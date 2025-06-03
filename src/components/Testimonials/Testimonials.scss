@@ -1,0 +1,32 @@
+.testimonials-slider {
+  max-width: 1100px;
+  margin: auto;
+
+  .swiper-button-prev,
+  .swiper-button-next {
+    color: #007bff !important; // Bootstrap primary color
+  }
+
+  .swiper-pagination-bullet {
+    background: #007bff !important;
+  }
+}
+
+
+.testimonial-card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.testimonial-name {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #000000;
+}
+
+.testimonial-feedback {
+  font-size: 1rem;
+  color: #555;
+  font-style: italic;
+}

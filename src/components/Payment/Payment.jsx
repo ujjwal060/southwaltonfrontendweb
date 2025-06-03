@@ -29,7 +29,7 @@ const CheckoutForm = () => {
                 // Fetch user details
                 const userId = localStorage.getItem('user');
                 if (userId) {
-                    const userResponse = await axios.get(`http://44.196.64.110:5001/api/user/${userId}`);
+                    const userResponse = await axios.get(`http://18.209.91.97:5001/api/user/${userId}`);
                     setEmail(userResponse.data.data.email);
                     setPhone(userResponse.data.data.phoneNumber);
                 } else {
@@ -47,7 +47,7 @@ const CheckoutForm = () => {
                 }
 
                 // Build the API URL dynamically
-                const apiURL = `http://44.196.64.110:5001/api/reserve/reservation/${reservationId}`;
+                const apiURL = `http://18.209.91.97:5001/api/reserve/reservation/${reservationId}`;
 
                 const fetchPrice = async () => {
                     try {
@@ -83,14 +83,15 @@ const CheckoutForm = () => {
         const bookingId = searchParams.get("bookingId");
         try {
             console.log('Sending payment details:', { transactionId, userId, email, phone, price, bookingId, reservationId });
-            const response = await axios.post('http://44.196.64.110:5001/api/pay/register', {
+            const response = await axios.post('http://18.209.91.97:5001/api/pay/register', {
                 transactionId,
                 userId,
                 email,
                 phone,
                 bookingId,
-                reservation: reservationId,  // Ensure the reservation is being sent here
-                amount: price
+                reservation: reservationId,  
+                amount: price,
+                fromAdmin : false,
             });
             console.log('Payment details sent successfully.');
 
@@ -117,7 +118,7 @@ const CheckoutForm = () => {
 
         try {
             // Create payment intent
-            const { data } = await axios.post('http://44.196.64.110:5001/api/payment/create-payment-intent', {
+            const { data } = await axios.post('http://18.209.91.97:5001/api/payment/create-payment-intent', {
                 amountInDollars: price
             });
             const { clientSecret, transactionId } = data;
@@ -140,7 +141,7 @@ const CheckoutForm = () => {
 
                 // Step 4: Call Send-Invoice API
                 try {
-                    const invoiceResponse = await axios.post(`http://44.196.64.110:5001/api/pay/send-invoice/${paymentId}`);
+                    const invoiceResponse = await axios.post(`http://18.209.91.97:5001/api/pay/send-invoice/${paymentId}`);
 
                     if (invoiceResponse.data.success) {
                         navigate('/payment-successfully', { state: { transactionId, amount: price } });

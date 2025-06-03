@@ -14,7 +14,7 @@ const ForgotPassword = () => {
     e.preventDefault();
     
     try {
-      await axios.post('http://44.196.64.110:5001/api/auth/send-email', { email });
+      await axios.post('http://18.209.91.97:5001/api/auth/send-email', { email });
       setMessage('OTP sent to your email successfully!');
       setIsOtpSent(true); // Show OTP input field
     } catch (error) {
@@ -26,7 +26,7 @@ const ForgotPassword = () => {
     e.preventDefault();
     
     try {
-      const response = await axios.post('http://44.196.64.110:5001/api/auth/verify-otp', { email, otp });
+      const response = await axios.post('http://18.209.91.97:5001/api/auth/verify-otp', { email, otp });
       
       if (response.status === 200) {
         // Redirect to resetPassword page with token as a query parameter

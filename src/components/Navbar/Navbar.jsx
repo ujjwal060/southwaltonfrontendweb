@@ -1,147 +1,142 @@
-// import React, { useState } from 'react';
-// import './Navbar.scss';
-// import image1 from './img/image1.png'; // Adjust the path to your logo file
-// import { Link, useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { Navbar, Nav, Container, Button, Dropdown } from "react-bootstrap";
+import Logout from "../Logout/Logout";
+import image1 from "./img/image1.png";
+import "./Navbar.scss";
+import { FaSignInAlt, FaUserPlus, FaUser } from "react-icons/fa";
 
-// const Navbar = () => {
-//   const [isMenuOpen, setIsMenuOpen] = useState(false);
-//   const navigate = useNavigate();
-//   const isLoggedIn = !!localStorage.getItem('token');
-
-//   const handleLogout = () => {
-//     localStorage.removeItem('token');
-//     localStorage.removeItem('user');
-//     setIsMenuOpen(false); // Close menu after logout
-//     navigate('/login'); // Redirect to login page
-//   };
-
-//   const toggleMenu = () => {
-//     setIsMenuOpen(!isMenuOpen);
-//   };
-
-//   const handleContactUs = () => {
-//     setIsMenuOpen(false); // Close menu
-//     navigate('/contact');
-//   };
-
-//   const handleMenuClick = () => {
-//     setIsMenuOpen(false); // Close menu on any menu item click
-//   };
-
-//   return (
-//     <nav className="navbar">
-//       <div className="navbar-logo">
-//         <Link to="/" onClick={handleMenuClick}>
-//           <img src={image1} alt="Logo" />
-//         </Link>
-//       </div>
-//       <button className="menu-toggle" onClick={toggleMenu}>
-//         ☰
-//       </button>
-//       <div className={`navbar-links ${isMenuOpen ? 'open' : ''}`}>
-//         <Link to="/about" onClick={handleMenuClick}>About Us</Link>
-//         <Link to="/cart" onClick={handleMenuClick}>Cart</Link>
-//         {isLoggedIn ? (
-//           <button className="login-button" onClick={handleLogout}>
-//             Logout
-//           </button>
-//         ) : (
-//           <>
-//             <Link to="/login" onClick={handleMenuClick}>
-//               <button className="login-button">Login</button>
-//             </Link>
-//             <Link to="/sign-up" onClick={handleMenuClick}>
-//               <button className="signup-button">Sign Up</button>
-//             </Link>
-//           </>
-//         )}
-//         <button className="contact-button" onClick={handleContactUs}>
-//           Contact Us
-//         </button>
-//       </div>
-//     </nav>
-//   );
-// };
-
-// export default Navbar;
-import React, { useState } from 'react';
-import './Navbar.scss';
-import image1 from './img/image1.png'; // Adjust the path to your logo file
-import { Link, useNavigate } from 'react-router-dom';
-import Logout from '../Logout/Logout'; // Import the LogoutModal component
-
-const Navbar = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false); // State for modal visibility
+const CustomNavbar = () => {
+  const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
+  const [expanded, setExpanded] = useState(false);
   const navigate = useNavigate();
-  const isLoggedIn = !!localStorage.getItem('token');
+  const isLoggedIn = !!localStorage.getItem("token");
 
   const handleLogout = () => {
-    // Show the logout modal instead of logging out directly
     setIsLogoutModalOpen(true);
+    setExpanded(false);
   };
 
   const confirmLogout = () => {
-    // Perform actual logout
-    localStorage.removeItem('token');
-    localStorage.removeItem('vehicleId');
-    localStorage.removeItem('reservationId')
-    localStorage.removeItem('user');
-    setIsMenuOpen(false); // Close menu after logout
-    setIsLogoutModalOpen(false); // Close modal after logout
-    navigate('/login'); // Redirect to login page
+    localStorage.removeItem("token");
+    localStorage.removeItem("vehicleId");
+    localStorage.removeItem("reservationId");
+    localStorage.removeItem("user");
+    localStorage.clear();
+    setIsLogoutModalOpen(false);
+    navigate("/login");
   };
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-
-  const handleContactUs = () => {
-    setIsMenuOpen(false); // Close menu
-    navigate('/contact');
-  };
-
-  const handleMenuClick = () => {
-    setIsMenuOpen(false); // Close menu on any menu item click
-  };
-
-  const closeModal = () => {
-    setIsLogoutModalOpen(false); // Close the modal without logging out
-  };
+  const closeModal = () => setIsLogoutModalOpen(false);
 
   return (
-    <nav className="navbar">
-      <div className="navbar-logo">
-        <Link to="/" onClick={handleMenuClick}>
-          <img src={image1} alt="Logo" />
-        </Link>
-      </div>
-      <button className="menu-toggle" onClick={toggleMenu}>
-        ☰
-      </button>
-      <div className={`navbar-links ${isMenuOpen ? 'open' : ''}`}>
-        <Link to="/about" onClick={handleMenuClick} className='about-nav'>About Us</Link>
-        {/* <Link to="/cart" onClick={handleMenuClick}>Cart</Link> */}
-        {isLoggedIn ? (
-          <button className="login-button" onClick={handleLogout}>
-            Logout
-          </button>
-        ) : (
-          <>
-            <Link to="/login" onClick={handleMenuClick}>
-              <button className="login-button">Login</button>
-            </Link>
-            <Link to="/sign-up" onClick={handleMenuClick}>
-              <button className="signup-button">Sign Up</button>
-            </Link>
-          </>
-        )}
-        <button className="contact-button" onClick={handleContactUs}>
-          Contact Us
-        </button>
-      </div>
-
-      {/* Render the LogoutModal */}
+    <Navbar
+      collapseOnSelect
+      expand="lg"
+      className="custom-navbar sticky-top"
+      bg="white"
+      variant="light"
+      expanded={expanded}
+    >
+      <Container className="my-0 py-0" fluid>
+        <Navbar.Brand as={Link} to="/">
+          <img
+            src={image1}
+            alt="Logo"
+            width="70"
+            className="img-nav-logo"
+          />
+        </Navbar.Brand>
+        <Navbar.Toggle
+          aria-controls="responsive-navbar-nav"
+          onClick={() => setExpanded(expanded ? false : true)}
+        />
+        <Navbar.Collapse
+          id="responsive-navbar-nav"
+          className="justify-content-end"
+        >
+          <Nav className="gap-3 align-items-center">
+            <Nav.Link
+              as={Link}
+              to="/"
+              className="nav-link-custom"
+              style={{ fontSize: "17px" }}
+              onClick={() => setExpanded(false)}
+            >
+              Home
+            </Nav.Link>
+            <Nav.Link
+              as={Link}
+              to="/about"
+              className="nav-link-custom"
+              style={{ fontSize: "17px" }}
+              onClick={() => setExpanded(false)}
+            >
+              About Us
+            </Nav.Link>
+            <Nav.Link
+              as={Link}
+              to="/contact"
+              className="nav-link-custom"
+              style={{ fontSize: "17px" }}
+              onClick={() => setExpanded(false)}
+            >
+              Contact Us
+            </Nav.Link>
+            {isLoggedIn ? (
+              <Nav.Link className="nav-link-custom">
+                <Dropdown>
+                  <Dropdown.Toggle
+                    variant="light"
+                    id="dropdown-basic"
+                    className="profile-dropdown button-custom"
+                  >
+                    <FaUser size={20} /> My Profile
+                  </Dropdown.Toggle>
+                  <Dropdown.Menu align="end">
+                    <Dropdown.Item
+                      as={Link}
+                      to="/profile"
+                      onClick={() => setExpanded(false)}
+                    >
+                      My Account
+                    </Dropdown.Item>
+                    <Dropdown.Item
+                      as={Link}
+                      to="/booking"
+                      onClick={() => setExpanded(false)}
+                    >
+                      My Bookings
+                    </Dropdown.Item>
+                    <Dropdown.Item onClick={handleLogout}>Logout</Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
+              </Nav.Link>
+            ) : (
+              <>
+                <Button
+                  as={Link}
+                  to="/login"
+                  className="button-custom"
+                  style={{ fontSize: "17px" }}
+                  onClick={() => setExpanded(false)}
+                >
+                  Login <FaSignInAlt />
+                </Button>
+                <Button
+                  as={Link}
+                  to="/sign-up"
+                  className="button-custom"
+                  style={{ fontSize: "17px" }}
+                  onClick={() => setExpanded(false)}
+                >
+                  Sign Up <FaUserPlus />
+                </Button>
+              </>
+            )}
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
       {isLogoutModalOpen && (
         <Logout
           isOpen={isLogoutModalOpen}
@@ -149,8 +144,8 @@ const Navbar = () => {
           onLogout={confirmLogout}
         />
       )}
-    </nav>
+    </Navbar>
   );
 };
 
-export default Navbar;
+export default CustomNavbar;

@@ -82,6 +82,34 @@
   }
 }
 
+.checkbox-section {
+  margin-top: 20px;
+}
+
+.checkbox-section input {
+  margin-right: 10px;
+}
+
+.error-message {
+  color: red;
+  margin-top: 10px;
+}
+
+.proceed-payment-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.proceed-payment-button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+
 @media (max-width: 600px) {
   .payment-container {
     padding: 15px;

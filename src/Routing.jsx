@@ -1,4 +1,9 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+} from "react-router-dom";
 import Login from "./components/Login/Login";
 import SignUp from "./components/SignUp/SignUp";
 import Footer from "./components/Footer/Footer";
@@ -34,13 +39,86 @@ import Popup from "./components/Popup/Popup";
 import Contact from "./components/ContactUs/Contact";
 import Agree from "./components/Agreement/Agree";
 import Reserve from "./Resserve/Reserve";
+import ThankYou from "./components/ThankYou/ThankYou";
+// for admin
+import AdminAgreement from "./components/Admin/AdminAgreement";
+import AdminPayment from "./components/Admin/AdminPayment";
+import AdminPaymentSuccessful from "./components/Admin/AdminPaymentSuccessful";
+// pages
+import PrivacyPolicy from "./components/Pages/PrivacyPolicy";
+import DeleteAccount from "./components/Pages/DeleteAccountPolicy";
+import TermsandCondition from "./components/Pages/TermsandCondition";
+import Testimonials from "./components/Testimonials/Testimonials";
+import AgreementPage from "./components/AgreementPage/AgreementPage";
+
+import Blog from "./components/Blog/blog";
+
+import { useEffect } from "react";
+
+import ScrollToTop from "./components/scroll/ScrollToTop"; // Import here
+
+// import StripePayment from "./components/Payment/StripePayment";
+
+
+function TitleUpdater() {
+  const location = useLocation();
+
+  // Define page titles for specific routes
+  const pageTitles = {
+    "/": "Home | South Walton",
+    "/home": "Home | South Walton",
+    "/login": "Login | South Walton",
+    "/sign-up": "Sign Up | South Walton",
+    "/about": "About Us | South Walton",
+    "/cart": "Shopping Cart | South Walton",
+    "/checkout": "Checkout | South Walton",
+    "/profile": "My Profile | South Walton",
+    "/payment": "Payment | South Walton",
+    "/contact": "Contact Us | South Walton",
+    "/privacy-policy": "Privacy Policy | South Walton",
+    "/terms-and-condition": "Terms & Conditions | South Walton",
+    "/thankyou": "Thank You | South Walton",
+    "/booking": "My Bookings | South Walton",
+    "/testimonials": "Testimonials | South Walton",
+    "/blog": "Blogs | South Walton"
+  };
+
+  useEffect(() => {
+    // Set title based on current pathname
+    document.title = pageTitles[location.pathname] || "South Walton";
+  }, [location.pathname]);
+
+  return null; // This component does not render anything
+}
+
+function Layout({ children }) {
+  const location = useLocation();
+
+  const noHeaderFooterRoutes = [
+    "/privacy-policy",
+    "/delete-account-policy",
+    "/terms-and-condition",
+  ];
+
+  const hideHeaderFooter = noHeaderFooterRoutes.includes(location.pathname);
+
+  return (
+    <>
+      <TitleUpdater /> {/* Include the TitleUpdater component */}
+      {!hideHeaderFooter && <Navbar />}
+      {children}
+      {!hideHeaderFooter && <Footer />}
+    </>
+  );
+}
 
 function Routing() {
-    return (
-      <div>
-        <Router>  
-          <Navbar />    
-
+  return (
+    <div>
+      <Router>
+        {/* <Navbar /> */}
+        <Layout>
+        <ScrollToTop /> 
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route path="/" element={<Home />} />
@@ -71,17 +149,40 @@ function Routing() {
             <Route path="/change-password" element={<ChangePassword />} />
             <Route path="/feedback" element={<Feedback />} />
             <Route path="/download" element={<DownloadApp />} />
-            <Route path="/payment-successfully" element={<PaymentSuccessfully />} />
-            <Route path="/popup" element={<Popup/>} />
-            <Route path="/contact" element={<Contact/>} />
-            <Route path="/agree" element={<Agree/>} />
-            <Route path="/reserve" element={<Reserve/>} />
+            <Route path="/thankyou" element={<ThankYou />} />
+            <Route path="/payment-successfully"
+              element={<PaymentSuccessfully />}
+            />
+            <Route path="/popup" element={<Popup />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/agree" element={<Agree />} />
+            <Route path="/reserve" element={<Reserve />} />
+            <Route path="/testimonials" element={<Testimonials />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/agreementpage" element={<AgreementPage />} />
+            {/*For admin */}
+            <Route path="/agreement-admin" element={<AdminAgreement />} />
+            <Route path="/payment-admin" element={<AdminPayment />} />
+            <Route
+              path="/paymentsuccessful-admin"
+              element={<AdminPaymentSuccessful />}
+            />
 
+            {/* pages */}
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/delete-account-policy" element={<DeleteAccount />} />
+            <Route
+              path="/terms-and-condition"
+              element={<TermsandCondition />}
+            />
+
+            {/* <Route path="/StripePayment" element={<StripePayment />} /> */}
           </Routes>
-          <Footer/>
-        </Router>
-      </div>
-    );
-  }
-  
-  export default Routing;
+        </Layout>
+        {/* <Footer /> */}
+      </Router>
+    </div>
+  );
+}
+
+export default Routing;

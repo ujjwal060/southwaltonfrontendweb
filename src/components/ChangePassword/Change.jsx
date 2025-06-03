@@ -9,9 +9,6 @@ const Change = () => {
   const [message, setMessage] = useState('');
   const navigate = useNavigate(); // For navigation after successful password reset
   const location = useLocation();
-  // const resetToken = location.state?.resetToken; 
-
-
   const email = location.state?.email; // Handle token from URL or state
 
   useEffect(() => {
@@ -29,7 +26,7 @@ const Change = () => {
     }
 
     try {
-      const response = await axios.post('http://44.196.64.110:5001/api/auth/resetPassword', {
+      const response = await axios.post('http://18.209.91.97:5001/api/auth/resetPassword', {
       email:  email,
         password,
       });

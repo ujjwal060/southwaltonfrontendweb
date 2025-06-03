@@ -1,21 +1,28 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
 $font-family: 'Raleway', sans-serif;
+.login-img{
+    width: 100%;
+    border: 1px solid goldenrod;
+    border-top-left-radius: 50%;
+}
 
 .login-container {
-    max-width: 400px;
+    width: 100%;
+    max-width: 460px;
     margin: 0 auto;
     padding: 10px;
     font-family: Raleway;
 
     .login {
         font-family: Raleway;
-        font-size: 3rem;
+        font-size: 2rem;
         font-weight: 800;
         line-height: 1.2;
         text-align: center;
-        margin-bottom: 1.5rem;
-        margin-top: 4rem;
+        // margin-bottom: 1.5rem;
+        // margin-top: 4rem;
         text-decoration:underline;
+        // margin-right: 4rem;
     }
     h3 {
         text-align: center;
@@ -42,7 +49,7 @@ $font-family: 'Raleway', sans-serif;
         }
 
         input {
-            width: 80%;
+            width: 100%;
             padding: 8px;
             border-radius: 50px;
         }
@@ -74,7 +81,7 @@ $font-family: 'Raleway', sans-serif;
             border-radius: 50px;
             font-weight: 400;
             cursor: pointer;
-            margin-right: 4em;
+            // margin-right: 4em;
             font-size: 1.2em;
 
             &:hover {
@@ -87,7 +94,7 @@ $font-family: 'Raleway', sans-serif;
     .additional-options {
         text-align: center;
         margin-top: 10px;
-        margin-right: 4em;
+        // margin-right: 4em;
 
         p {
             margin: 10px 10px;
@@ -147,7 +154,7 @@ $font-family: 'Raleway', sans-serif;
 @media (max-width: 480px) {
     .login-container {
         padding: 10px;
-        margin-left: 15%;
+        // margin-left: 15%;
 
         h2 {
             font-size: 1.2em;

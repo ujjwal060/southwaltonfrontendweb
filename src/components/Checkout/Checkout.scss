@@ -3,9 +3,10 @@
     margin: 0 auto;
     padding: 20px;
     border-radius: 10px;
-    background-color: #f9f9f9;
-    margin-top:3%;
-    padding-top: 0%;
+    background: #f8f8f8;
+    margin-top:2%;
+    margin-bottom: 2%;
+
 
     h1 {
         text-align: center;
@@ -27,7 +28,7 @@
         .location-input,
         .dates {
             display: flex;
-            flex-direction: column; // Default to column for mobile view
+            flex-direction: column;
             align-items: stretch;
             gap: 1rem;
             width: 100%;
@@ -61,10 +62,8 @@
 
     .form-grid {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
         gap: 20px;
-        // margin-bottom: 5px;
-        // background-color: red;
+        grid-template-columns: repeat(4, 1fr);
         padding-left: 5%;
 
         @media (max-width: 1024px) {
@@ -79,7 +78,7 @@
     .form-group {
         display: flex;
         flex-direction: column;
-        align-items: center;
+        padding-left: 0%;
 
         label {
             margin-bottom: 10px;
@@ -87,7 +86,6 @@
             font-size: 1.1rem;
             color: #555;
         }
-
         input[type="text"],
         input[type="email"],
         input[type="number"],
@@ -100,7 +98,7 @@
             color: #333;
             width: 100%;
             max-width: 300px;
-        }
+        } 
     }
 
     .drivers-section {
@@ -108,10 +106,11 @@
 
         .driver-details {
             border: 1px solid #eee;
-            // padding: 15px;
             border-radius: 10px;
             margin-bottom: 15px;
-            background-color: #fafafa;
+            background-color: #ebebeb;
+            padding-bottom: 5%;
+            padding-right: 5%;
 
             .remove-driver {
                 background-color: #ff4d4d;
@@ -120,7 +119,7 @@
                 padding: 10px 15px;
                 border-radius: 5px;
                 cursor: pointer;
-                margin-top: 10px;
+                margin: 4% 0% 0% 6%;
 
                 &:hover {
                     background-color: #ff2d2d;
@@ -181,15 +180,29 @@
         .form-grid {
             grid-template-columns: 1fr;
             text-align: center;
+            padding-left: 0%;
         }
 
         .form-group {
+            align-items: center;
+            justify-content: center;
+            padding-left: 0%;
             input[type="text"],
             input[type="number"],
             input[type="email"],
             input[type="file"] {
                 padding: 10px;
                 font-size: 0.9rem;
+            }
+
+             label {
+                margin-bottom: 10px;
+                font-weight: bold;
+                font-size: 1.1rem;
+                color: #555;
+                text-align: start;
+                width: 100%;
+                padding: 0 0 0 35px;
             }
         }
 
@@ -222,12 +235,25 @@
         }
 
         .form-group {
+            align-items: center;
+            text-align: center;
+            padding-left: 0%;
             input[type="text"],
             input[type="email"],
             input[type="number"],
             input[type="file"] {
                 padding: 8px;
                 font-size: 0.8rem;
+            }
+            
+            label {
+                margin-bottom: 10px;
+                font-weight: bold;
+                font-size: 1.1rem;
+                color: #555;
+                text-align: start;
+                width: 100%;
+                padding: 0 0 0 35px;
             }
         }
 
@@ -248,3 +274,5 @@
         }
     }
 }
+
+  

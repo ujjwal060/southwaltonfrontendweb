@@ -1,125 +1,166 @@
-import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
-import './PaymentSuccessfully.scss';
-import payment from './img/payment.png'; // Path to your check icon image
-import { Link } from 'react-router-dom';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { useSearchParams, useNavigate } from "react-router-dom";
+import "./PaymentSuccessfully.scss";
+import successful1 from "./img/successful1.png";
+import axios from "axios";
+import { FaSpinner } from "react-icons/fa";
 
 const InvoiceDetails = () => {
-  const location = useLocation();
-  const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('');
-  const [name, setName] = useState('');
-  const [price, setPrice] = useState('');
-  const [error, setError] = useState('');
-  const [loading, setLoading] = useState('');
-  const { transactionId } = location.state || {};
-
   const navigate = useNavigate();
-  const handleChange = () => {
-    navigate('/')
-  }
+  const [orderHistory, setOrderHistory] = useState({});
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [price, setPrice] = useState("");
+  const [error, setError] = useState("");
+  const [searchParams] = useSearchParams();
+  const sessionId = searchParams.get("session_id");
+  const [bookingId, setBookingId] = useState("");
+
+  const [paymentLoading, setPaymentLoading] = useState(true); // API data loading
+  const [userLoading, setUserLoading] = useState(true); // User data loading
+  const [dataLoaded, setDataLoaded] = useState(false); // Ensure everything is loaded
 
   useEffect(() => {
-    const reservationId = localStorage.getItem("reservationId");
-
-    if (!reservationId) {
-      setError("No reservation ID found in localStorage.");
-      return;
+    if (sessionId) {
+      const fetchPaymentDetails = async () => {
+        try {
+          const response = await axios.get(
+            `http://18.209.91.97:5001/api/pay/complete-payment?session_id=${sessionId}`
+          );
+          if (response.status === 200) {
+            setOrderHistory(response.data.data);
+            setPrice(
+              response.data.data.paymentDetails.transactionDetails.amount / 100
+            );
+            setBookingId(response.data.data.bookingId);
+          }
+        } catch (error) {
+          console.error("Error fetching payment details:", error);
+          setError("Failed to fetch payment details");
+        } finally {
+          setPaymentLoading(false);
+        }
+      };
+      fetchPaymentDetails();
     }
+  }, [sessionId]);
 
-    localStorage.removeItem("reservationId");
-
-    const apiURL = `http://44.196.64.110:5001/api/reserve/reservation/${reservationId}`;
-
-    // Fetch the price from the API
-    const fetchPrice = async () => {
+  useEffect(() => {
+    const fetchUserDetails = async () => {
+      const userId = localStorage.getItem("user");
+      if (!userId) {
+        setError("User ID not found");
+        setUserLoading(false);
+        return;
+      }
       try {
-        // Fetch data from the API using Axios
-        const response = await axios.get(apiURL);
-        setPrice(response.data.reserveAmount); // Assuming the API response contains a 'price' field
-        console.log("Fetched Price:", response.data.reserveAmount);
-      } catch (err) {
-        console.error("Error fetching the price:", err);
-        setError("Failed to fetch the price. Please try again later.");
+        const response = await axios.get(
+          `http://18.209.91.97:5001/api/user/${userId}`
+        );
+        setEmail(response.data.data.email);
+        setPhone(response.data.data.phoneNumber);
+      } catch (error) {
+        console.error("Error fetching user details:", error);
+        setError("Failed to fetch user details");
+      } finally {
+        setUserLoading(false);
       }
     };
-
-    fetchPrice();
+    fetchUserDetails();
   }, []);
 
-
-  const fetchUserDetails = async () => {
-    const userId = localStorage.getItem('user');
-    if (!userId) {
-      setError("User Id not found")
-      setLoading(false)
-      return;
-    }
-    console.log(userId);
-    try {
-
-      const response = await axios.get(`http://44.196.64.110:5001/api/user/${userId}`);
-      console.log('response', response);
-      setEmail(response.data.data.email);
-      setName(response.data.data.name);
-      setPhone(response.data.data.phoneNumber);
-    }
-    catch (error) {
-      console.error('Error fetching user details:', err);
-      setError('Failed to fetch user details');
-    }
-  }
-  const fetchVehicleDetails = async () => {
-
-    const vehicle = localStorage.getItem('vehicleId');
-    if (!vehicle) {
-      setError('Vehicle not found')
-      setLoading(false);
-      return;
-    }
-    try {
-      const response = await axios.get(`http://44.196.64.110:5001/api/vehicle/vehicles/${vehicle}`)
-      setPrice(response.data.vprice);
-      console.log(response);
-
-    }
-    catch (error) {
-      console.error('Error fetching vehicle details:', err);
-      setError('Failed to fetch vehicle details');
-    }
-
-  }
-
+  // ✅ Ensure everything is fully loaded before showing data
   useEffect(() => {
-    fetchUserDetails();
-    fetchVehicleDetails()
-  }, [])
+    if (!paymentLoading && !userLoading) {
+      setDataLoaded(true);
+    }
+  }, [paymentLoading, userLoading]);
+
+  const handleNext = () => {
+    navigate("/");
+  };
 
   return (
-    <>
-      <div className="invoice-container">
-        <div className="icon-section">
-          <img src={payment} alt="Success" />
+    <div className="invoice-container container pt-2">
+      <div className="row">
+        {/* Left Side - Always Visible */}
+        <div className="col-md-6">
+          <div className="icon-section">
+            <img className="image" src={successful1} alt="Success" />
+          </div>
+          <h2>
+            <strong>
+              Congratulations! Your Payment for Reservation is done Successfully
+            </strong>
+          </h2>
+
+          <div className="note">
+            <div className="note-content text-muted fs-6 text-danger">
+              **NOTE: A mail has been sent to your email address. Please check
+              your inbox for the app link and follow the instructions provided
+              to proceed with the next steps.
+            </div>
+          </div>
         </div>
-        <div className="details-section">
-          <p><strong>Payment Method</strong> : Net Banking</p>
-          <p><strong>Payment Type</strong> : Stripe</p>
-          <p><strong>Mobile</strong> : {phone}</p>
-          <p><strong>Email</strong> : {email}</p>
-          <p><strong>Amount Paid</strong> : ${price}</p>
-          <p><strong>Transaction ID</strong> : {transactionId || 'N/A'}</p>
-          <button className="next-button" onClick={handleChange}>Next</button>
+
+        {/* Right Side - Conditional */}
+        <div className="col-md-6">
+          {!dataLoaded ? (
+            <div className="text-center pt-5">
+              <h5>
+                <FaSpinner className="spinner-icon me-2" spin /> Loading Payment
+                Details... Please Wait
+              </h5>
+            </div>
+          ) : (
+            <table className="details-table table table-striped table-bordered">
+              <tbody>
+                <tr>
+                  <td>Amount Paid</td>
+                  <td>{`$${price || "N/A"}`}</td>
+                </tr>
+                <tr>
+                  <td>Payment Method</td>
+                  <td>{orderHistory.paymentDetails?.paymentMethod || "N/A"}</td>
+                </tr>
+                <tr>
+                  <td>Payment Type</td>
+                  <td>Stripe</td>
+                </tr>
+                <tr>
+                  <td>Payment ID</td>
+                  <td>{orderHistory.paymentDetails?.paymentId || "N/A"}</td>
+                </tr>
+                <tr>
+                  <td>Booking ID</td>
+                  <td>{bookingId || "N/A"}</td>
+                </tr>
+                <tr>
+                  <td>Transaction ID</td>
+                  <td>
+                    {orderHistory.paymentDetails?.transactionDetails?.id ||
+                      "N/A"}
+                  </td>
+                </tr>
+                <tr>
+                  <td>Mobile</td>
+                  <td>{phone || "N/A"}</td>
+                </tr>
+                <tr>
+                  <td>Email</td>
+                  <td>{email || "N/A"}</td>
+                </tr>
+              </tbody>
+            </table>
+          )}
         </div>
       </div>
 
-{/* note */}
-      <div className='note'>    
-        <div className='note-content'> **NOTE:  A mail has been sent to your email address. Please check your inbox for the app link and follow the instructions provided to proceed with the next steps.</div>
-      </div>
-    </>
+      <button className="next-button" onClick={handleNext}>
+        Back to Home
+      </button>
+    </div>
   );
 };
 
-export default InvoiceDetails;     
+export default InvoiceDetails;

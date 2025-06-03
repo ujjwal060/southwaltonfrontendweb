@@ -30,9 +30,6 @@ const HomeSection4 = () => {
             <p>Area 4</p>
           </div>
         </div>
-        {/* <Link to='/cart'>
-          <button className="see-all">See All Areas ➔</button>
-        </Link> */}
       </div>
 
     </div>

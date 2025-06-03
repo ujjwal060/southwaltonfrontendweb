@@ -4,9 +4,9 @@ $font-family: 'Raleway', sans-serif;
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
 
 .about-us1 {
-  padding: 1.8rem;
+  // padding: 1.8rem;
   text-align: center;
-  margin-top:2%;
+  // margin-top:2%;
 
   .about-heading {
     font-family: Raleway;
@@ -15,11 +15,6 @@ $font-family: 'Raleway', sans-serif;
     line-height: 98.66px;
     text-align: center;
     text-decoration: underline;
-    // margin-left: 10%;
-
-    // &:hover {
-    //   color: #b4bd12;
-    // }
   }
 
   .about-content {
@@ -27,7 +22,7 @@ $font-family: 'Raleway', sans-serif;
     align-items: center;
     justify-content: space-between;
     margin: 2rem auto;
-    max-width: 1200px;
+    // max-width: 1100px;
 
     .text-content {
       flex: 1;
@@ -40,7 +35,7 @@ $font-family: 'Raleway', sans-serif;
         font-weight: 700;
         line-height: 42.26px;
         text-align: left;
-        margin-left: 6rem;
+        // margin-left: 6rem;
       }
 
       .text-heading-content2 {
@@ -48,7 +43,7 @@ $font-family: 'Raleway', sans-serif;
         font-size: 1.4rem;
         font-weight: 600;
         margin-bottom: 1rem;
-        margin-left: 6rem;
+        // margin-left: 6rem;
       }
 
       .about-para {
@@ -58,7 +53,7 @@ $font-family: 'Raleway', sans-serif;
         line-height: 1.4;
         margin-bottom: 1rem;
         color: #000000;
-        margin-left: 6rem;
+        // margin-left: 6rem;
       }
     }
 
@@ -83,7 +78,7 @@ $font-family: 'Raleway', sans-serif;
     font-family: Raleway;
     font-size: 35px;
     font-weight: 600;
-    line-height: 98.66px;
+    // line-height: 98.66px;
     text-align: center;
     text-decoration: underline;
   }
@@ -100,8 +95,10 @@ $font-family: 'Raleway', sans-serif;
       font-size: 16px;
       font-weight: 500;
       line-height: 30px;
-      // text-align: center;
-      padding: 2%;
+      text-align: justify;
+      // padding: 2%;
+      margin-bottom: 10px;
+      margin-top: 10px;
       color: #0c0b0b;
     }
   }
@@ -175,6 +172,7 @@ $font-family: 'Raleway', sans-serif;
   
   @media (max-width: 480px) {
     .about-us1 {
+      padding: 15px;
       .about-heading {
         font-size: 40px; // Adjust font size for smaller screens
       }
@@ -212,8 +210,8 @@ $font-family: 'Raleway', sans-serif;
   .about-us2 .first {
     width: 100%;
     margin-left: 0;
-    padding-left: 8%;
-    padding-right: 8%;
+    // padding-left: 8%;
+    // padding-right: 8%;
 }
 
 
@@ -254,9 +252,9 @@ $font-family: 'Raleway', sans-serif;
   // added
 
     .about-us1 .about-content .image-content img {
-        width: 85%;
-        height: 20vh;
-        margin-bottom: 25%;
+        width: 80%;
+        height: 30vh;
+        // margin-bottom: 25%;
     }
 
   .about-us1 .about-content .text-content .about-para {
@@ -307,4 +305,41 @@ $font-family: 'Raleway', sans-serif;
       }
     }
   }
+}
+/* Breadcrumbs Section */
+.breadcrumb-container {
+    background: linear-gradient(0deg, rgb(254 255 201) 0%, rgb(245 251 255) 100%);
+
+  // background: url('https://img.freepik.com/premium-photo/close-up-golf-ball_23-2148480783.jpg?ga=GA1.1.2076956031.1739515128&semt=ais_authors_boost') center/cover no-repeat;
+  position: relative;
+  padding: 40px 0;
+  text-align: center;
+}
+
+.breadcrumb-overlay {
+  // background: rgba(0, 0, 0, 0.6);
+  padding: 20px;
+  color: #fff;
+}
+
+.breadcrumb-overlay h2 {
+  font-size: 28px;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.breadcrumb-overlay p {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+.breadcrumb-overlay a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.breadcrumb-overlay a:hover {
+  text-decoration: underline;
 }

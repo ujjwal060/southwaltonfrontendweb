@@ -1,66 +1,154 @@
-import React from 'react';
-import './Footer.scss'; // Ensure this path matches your project structur
-import image1 from './img/image1.png'
+import React from "react";
+import "./Footer.scss";
+import image1 from "./img/image1.png";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
     <footer className="footer">
-      <div className="footer-container">
-        <div className="footer-section about">
-          <div className="logo">
-            <img src={image1}alt="SWC Logo" />
+      <div className="container">
+        <div className="row">
+          <div className="col-md-4">
+            <div className="footer-section about">
+              <div className="logo mb-2">
+                <img src={image1} alt="SWC Logo" />
+              </div>
+              <h6 className="mb-0 fw-bold">Family Owned and Operated</h6>
+              <p>
+                South Walton Golf Cart Rentals was started <br />
+                in 2012 and has been expanding ever since.
+              </p>
+            </div>
           </div>
-          <h2>Family owned and operated</h2>
-          <p>South Walton Golf Cart Rentals was started in 2021 and has been expanding ever since. We are mainly a street legal golf cart rental company, delivering golf carts right to your vacation rental.</p>
-        </div>
-        <div className="footer-section links">
-          <h2>Product</h2>
-          <ul className='ui'>
-            <li><a href="#">Carts</a></li>
-            <li><a href="#">Pricing</a></li>
-            <li><a href="#">Repairing</a></li>
-            <li><a href="#">Damage</a></li>
-            <li><a href="#">Drivers</a></li>
-          </ul>
-        </div>
-        <div className="footer-section links">
-          <h2 >Company</h2>
-          <ul className='ui'>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Contact us</a></li>
-            <li><a href="#">Careers</a></li>
-            <li><a href="#">Culture</a></li>
-            <li><a href="#">Blog</a></li>
-          </ul>
-        </div>
-        <div className="footer-section links">
-          <h2>Support</h2>
-          <ul className='ui'>
-            <li><a href="#">Getting started</a></li>
-            <li><a href="#">Help center</a></li>
-            <li><a href="#">Server status</a></li>
-            <li><a href="#">Report a bug</a></li>
-          </ul>
-        </div>
-        <div className="footer-section links">
-          <h2>Downloads</h2>
-          <ul className='ui'>
-            <li><a href="#">iOS</a></li>
-            <li><a href="#">Android</a></li>
-            <li><a href="#">Mac</a></li>
-            <li><a href="#">Windows</a></li>
-            <li><a href="#">Chrome</a></li>
-          </ul>
+
+          <div className="col-md-2 col-6">
+            <div className="footer-section links">
+              <h5>Quick Links</h5>
+              <div className="divider"></div>
+              <ul className="ui">
+                <li>
+                  <Link to="/">Home</Link>
+                </li>
+                <li>
+                  <Link to="/about">About Us</Link>
+                </li>
+                <li>
+                  <Link to="/contact">Contact Us</Link>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="col-md-2 col-6">
+            <div className="footer-section links">
+              <h5>Company</h5>
+              <div className="divider"></div>
+              <ul className="ui">
+                <li>
+                  <Link to="/home2">Carts</Link>
+                </li>
+
+                <li>
+                  <Link to="/testimonials">Testimonials</Link>
+                </li>
+                <li>
+                  <Link to="/blog">Blogs</Link>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="col-md-2 col-6">
+            <div className="footer-section links">
+              <h5>Support</h5>
+              <div className="divider"></div>
+              <ul className="ui">
+                <li>
+                  <Link to="/login">Getting Started</Link>
+                </li>
+                <li>
+                  <Link to="/sign-up">Sign Up</Link>
+                </li>
+                <li>
+                  <Link to="/contact">Help Center</Link>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="col-md-2 col-6">
+            <div className="footer-section links">
+              <h5>Downloads</h5>
+              <div className="divider"></div>
+              <ul className="ui">
+                <li>
+                  <a
+                    href="https://apps.apple.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <img
+                      src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg"
+                      alt="Download on the App Store"
+                      style={{ width: "140px", height: "auto" }}
+                    />
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="https://play.google.com/store/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <img
+                      src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Google_Play_Store_badge_EN.svg/200px-Google_Play_Store_badge_EN.svg.png"
+                      alt="Get it on Google Play"
+                      style={{ width: "140px", height: "auto" }}
+                    />
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
-      <div className="footer-bottom">
-        <p>Copyright © 2024 South Walton | All Rights Reserved</p>
-        <div className="socials">
-          <a href="#"><i className="fab fa-facebook-f"></i></a>
-          <a href="#"><i className="fab fa-twitter"></i></a>
-          <a href="#"><i className="fab fa-instagram"></i></a>
-          <a href="#"><i className="fab fa-linkedin-in"></i></a>
-          <a href="#"><i className="fab fa-youtube"></i></a>
+
+      <div className="container mb-0">
+        <div className="footer-bottom">
+          <div className="row align-items-center">
+            <div className="col-md-6">
+              <div className="socials align-items-center">
+                <h6 className="text-white mb-0">Follow us on :</h6>
+                <a
+                  href="https://www.facebook.com/southwaltoncarts/"
+                  target="_blank"
+                >
+                  <i className="fab fa-facebook-f"></i>
+                </a>
+                <a
+                  href="https://www.instagram.com/southwaltoncarts/"
+                  target="_blank"
+                >
+                  <i className="fab fa-instagram"></i>
+                </a>
+                <a
+                  href="https://www.youtube.com/@southwaltoncarts"
+                  target="_blank"
+                >
+                  <i className="fab fa-youtube"></i>
+                </a>
+                <a
+                  href="https://www.google.com/search?q=south+walton+carts&rlz=1C1YTUH_en-GBIN1105IN1105&oq=south&gs_lcrp=EgZjaHJvbWUqBggCEEUYOzIGCAAQRRg8MgwIARBFGDkYsQMYgAQyBggCEEUYOzIKCAMQABixAxiABDIGCAQQRRg9MgYIBRBFGEEyBggGEEUYPDIGCAcQRRg80gEIMjgxMmowajeoAgiwAgHxBVHydJ9X6qDt&sourceid=chrome&ie=UTF-8"
+                  target="_blank"
+                >
+                  <i className="fab fa-google"></i>
+                </a>
+              </div>
+            </div>
+            <div className="col-md-6 text-end">
+              <p>Copyright © 2025 | South Walton | All Rights Reserved</p>
+            </div>
+          </div>
         </div>
       </div>
     </footer>

@@ -2,9 +2,111 @@
 $font-family: 'Raleway', sans-serif;
 
 .footer {
-  padding: 20px 0;
-  color: #333;
+  // background: #BBBC32;
+  background-image: url(img/footer.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  padding: 10px 0;
+  color: #fff;
   overflow: hidden;
+
+
+  .divider{
+    border-bottom: 2px solid #fff;
+    margin-bottom: 20px;
+    width: 110px;
+  }
+  .socials {
+    display: flex;
+    // justify-content: center;
+    gap: 15px;
+    margin-top: 15px;
+  }
+
+  .socials a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #333;
+    /* Default dark background */
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    transition: all 0.3s ease-in-out;
+  }
+
+  /* Specific hover colors for each social media */
+  .socials a .fa-facebook-f {
+    background-color: #1877F2;
+    /* Facebook Blue */
+  }
+
+  .socials a .fa-twitter {
+    background-color: #1DA1F2;
+    /* Twitter Blue */
+  }
+
+  .socials a .fa-instagram {
+    background: linear-gradient(45deg, #F58529, #DD2A7B, #8134AF, #515BD4);
+    /* Instagram Gradient */
+  }
+
+  .socials a .fa-linkedin-in {
+    background-color: #0A66C2;
+    /* LinkedIn Blue */
+  }
+
+  .socials a .fa-youtube {
+    background-color: #FF0000;
+    /* YouTube Red */
+  }
+  .socials a .fa-google {
+    background-color: #DB4437; /* Google Red */
+}
+
+  .socials i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    transition: all 0.3s ease-in-out;
+  }
+
+  /* Specific hover effects */
+  .socials a:hover {
+    transform: scale(1.2);
+    filter: brightness(1.2);
+  }
+
+  /* Hover effects for icons */
+  .socials a:hover .fa-facebook-f {
+    background-color: #145dbf;
+  }
+
+  .socials a:hover .fa-twitter {
+    background-color: #0d95e8;
+  }
+
+  .socials a:hover .fa-instagram {
+    filter: brightness(1.2);
+  }
+
+  .socials a:hover .fa-linkedin-in {
+    background-color: #004182;
+  }
+
+  .socials a:hover .fa-youtube {
+    background-color: #cc0000;
+  }
+  .socials a .fa-google:hover {
+    background-color: #C1351D; /* Darker Google Red */
+}
 
   .footer-container {
     display: flex;
@@ -13,49 +115,38 @@ $font-family: 'Raleway', sans-serif;
     max-width: 1200px;
     margin: 0 auto;
     // padding: 0 20px;
-    font-family: Raleway;
+    // font-family: Raleway;
   }
 
   .footer-section about {
     margin-right: 12em;
   }
 
-  .footer-section {
-    flex: 2;
-    min-width: 200px;
-    margin: 10px 20px;
-
-    // .links{
-
-    // }
-  }
 
   .logo img {
-    width: 70px;
+    width: 80px;
     height: auto;
   }
 
+  h2 {
+    font-size: 1.5rem;
+  }
+
   .footer-section.links {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    // display: flex;
+    // flex-direction: column;
+    // justify-content: center;
     align-items: center;
     height: 100%;
-    padding-top: 95px;
-    margin: -1% -2%;
+    // padding-top: 20px;
+    // margin: -1% -2%;
     margin-bottom: 5%;
-    text-align: center;
+    text-align: left;
   }
 
-  .footer-section.links .ui {
-    margin: -2% 0;
-  }
-
-  .footer-section h2 {
-    margin-top: 10px;
-  }
 
   .footer-section p {
+    text-align: justify;
     font-size: 16px;
     line-height: 1.5;
   }
@@ -66,29 +157,58 @@ $font-family: 'Raleway', sans-serif;
   }
 
   .footer-section ul li {
-    margin: 15px;
+    // list-style: disc;
+    margin-bottom: 15px;
     text-align: start;
   }
 
-  .footer-section ul li a {
-    color: #333;
+  // .footer-section ul li a {
+  //   color: #fff;
+  //   text-decoration: none;
+  // }
+
+  /* Footer Links Hover Effect */
+  .footer-section.links ul li a {
+    color: #ffffff;
     text-decoration: none;
+    transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
+    display: inline-block;
   }
 
-  .footer-section ul li a:hover {
-    text-decoration: underline;
+  .footer-section.links ul li a:hover {
+    color: #000000; /* Highlight color on hover */
+    transform: scale(1.03);
+  }
+  // .footer-section ul li a:hover {
+  //   text-decoration: underline;
+  // }
+  .footer-section.links ul li a img {
+    transition: transform 0.2s ease-in-out;
   }
 
+  .footer-section.links ul li a img:hover {
+    transform: scale(1.03);
+  }
   .footer-bottom {
+    width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    padding: 10px 20px;
+    // align-items: center;
+    padding: 10px 0px;
     border-top: 1px solid #ccc;
   }
 
   .footer-bottom p {
+
     margin: 10px 0;
+  }
+
+  .footer-bottom a {
+    color: #333;
+  }
+
+  .copyright-right-side {
+    text-align: end;
   }
 
   .socials {
@@ -98,7 +218,7 @@ $font-family: 'Raleway', sans-serif;
   }
 
   .socials a {
-    color: #333;
+    color: #fff;
     font-size: 16px;
     text-decoration: none;
   }
@@ -111,7 +231,7 @@ $font-family: 'Raleway', sans-serif;
   }
 
   .footer .footer-section ul li a {
-    color: #333;
+    color: #fff;
     text-decoration: none;
     margin: 0;
   }
@@ -120,12 +240,7 @@ $font-family: 'Raleway', sans-serif;
     font-size: 1em !important;
   }
 
-  .footer-section.links {
-    padding: 0px 30px 0 41px !important;
-    flex: 0 0 60% !important;
-    margin-bottom: 0 !important;
-    align-items: start !important;
-  }
+  
 
   .footer-container {
     // flex-direction: column;
@@ -133,28 +248,44 @@ $font-family: 'Raleway', sans-serif;
   }
 
   .footer-section {
-    margin: 20px 0;
+    text-align: center;
+    padding: 10px;
+    margin: 5px 0;
     flex: 0 0 100%;
   }
 
   .footer-bottom {
     text-align: center;
   }
+
+  .footer-bottom p {
+    font-size: 13px;
+    text-align: center;
+  }
+
+  .footer-bottom a {
+    font-size: 13px;
+
+  }
+
+  .copyright-right-side {
+    text-align: center;
+  }
+
+  .socials {
+    text-align: center;
+    justify-content: center;
+    margin-top: 0 !important;
+  }
 }
 
 
-@media (max-width:440px){
-  .footer-section.links {
-    padding: 0px 30px 0 41px !important;
-    flex: 0 0 100% !important;
-    margin-bottom: 0 !important;
-    align-items: center !important;
-}
-}
-@media  (min-width:700px) and (max-width:998px){
+
+@media (min-width:700px) and (max-width:998px) {
   .footer-section.links {
     flex: 0 0 35% !important;
   }
+
 
   .footer .footer-section {
     flex: 0 0 60%

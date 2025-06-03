@@ -3,12 +3,14 @@
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    padding: 20px;
-    padding-top: 5%;
+    // padding: 40px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
 
     .page {
         display: flex;
-        width: 100%;
+        width: 80%;
         max-width: 1200px;
         background: #fff;
         box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
@@ -103,6 +105,7 @@
     }
 
     @media (max-width: 768px) {
+        
         .part-2 {
             padding: 20px;
 
@@ -129,6 +132,7 @@
     }
 
     @media (max-width: 480px) {
+        
         .part-2 {
             padding: 15px;
         }
@@ -147,3 +151,40 @@
         }
     }
 }
+/* Breadcrumbs Section */
+.breadcrumb-container {
+    background-image: linear-gradient(60deg, #abecd6 0%, #fbed96 100%);
+    // background: url('https://img.freepik.com/premium-photo/close-up-golf-ball_23-2148480783.jpg?ga=GA1.1.2076956031.1739515128&semt=ais_authors_boost') center/cover no-repeat;
+    position: relative;
+    padding: 40px 0;
+    text-align: center;
+  }
+  
+  .breadcrumb-overlay {
+    // background: rgba(0, 0, 0, 0.6);
+    padding: 20px;
+    color: #fff;
+  }
+  
+  .breadcrumb-overlay h2 {
+    font-size: 28px;
+    margin-bottom: 5px;
+    color: #333;
+  }
+  
+  .breadcrumb-overlay p {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  .breadcrumb-overlay a {
+    color: #000000;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  
+  .breadcrumb-overlay a:hover {
+    text-decoration: underline;
+  }
+  

@@ -1,250 +1,302 @@
-.Reserve {
-    width: 100%;
-    height: 100vh;
-    position: relative;
+.img-booking-cart {
+  width: 100%;
+}
 
-    img {
+.Reserve {
+  width: 100%;
+  height: auto;
+  position: relative;
+  
+  img {
+    width: 100%;
+    height: 600px;
+    // object-fit: cover;
+    position: relative;
+    top: 0;
+    // margin-top: 2%;
+    z-index: -100;
+  }
+
+  .week {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 70%;
+    margin: 0 auto;
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: -100;
+
+    .weekName {
+      width: 60%;
+      margin-top: 15%;
+      img {
         width: 100%;
-        height: 80vh;
-        object-fit: cover; // Ensures the image fills the container proportionally
-        // position: absolute;
-        position: relative;
-        top: 0;
-        margin-top: 2%;
+        height: auto;
+      }
     }
 
+    .week2 {
+      flex: 1;
+      margin-left: 20px;
+
+      h3 {
+        font-family: Raleway;
+        font-size: 2.5rem;
+        font-weight: 600;
+        margin-bottom: 10px;
+        text-align: left;
+
+        span {
+          font-size: 1.2rem;
+          font-weight: 600;
+        }
+      }
+
+      h4 {
+        font-size: 2rem;
+        font-weight: 500;
+        margin: 0;
+        text-align: left;
+
+        span {
+          font-size: 2.5rem;
+          font-weight: 700;
+        }
+      }
+
+      p {
+        font-size: 1.5rem;
+        font-weight: 500;
+        line-height: 1.4;
+        text-align: left;
+
+        span {
+          font-size: 1.5rem;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+
+  .book {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 25%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    flex-direction: column;
+
+    .check {
+      color: red;
+    }
+  }
+  .request-button {
+    width: 300px;
+    height: 60px;
+    color: #333;
+    background-color: #fff;
+    border-radius: 50px;
+    border: 2px solid black;
+    font-family: Raleway;
+    font-size: 1.5rem;
+    font-weight: 500;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+
+    &:hover {
+      background-color: black;
+      color: white;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
     .week {
-        display: flex;
-        justify-content: space-evenly;
-        align-items: center;
-        width: 70%;
-        margin: 0 auto;
-        position: absolute;
-        top: 10%;
-        left: 50%;
-        transform: translateX(-50%);
+      flex-direction: column;
+      width: 100%;
+      top: 15%;
+      z-index: -10;
 
-        .weekName {
-            width: 60%;
-            img {
-                width: 100%;
-                height: auto;
-            }
+      .weekName {
+        width: 80%;
+        margin-bottom: 20px;
+        margin-top: 15%;
+      }
+
+      .week2 {
+        h3 {
+          font-size: 1.8rem;
         }
 
-        .week2 {
-            flex: 1;
-            margin-left: 20px;
+        h4 {
+          font-size: 1.6rem;
 
-            h3 {
-                font-family: Raleway;
-                font-size: 2.5rem;
-                font-weight: 600;
-                margin-bottom: 10px;
-                text-align: left;
-
-                span {
-                    font-family: Raleway;
-                    font-size: 1.2rem;
-                    font-weight: 600;
-                }
-            }
-
-            h4 {
-                font-family: Raleway;
-                font-size: 2rem;
-                font-weight: 500;
-                margin: 0;
-                text-align: left;
-
-                span {
-                    font-family: Raleway;
-                    font-size: 2.5rem;
-                    font-weight: 700;
-                }
-            }
-
-            p {
-                font-family: Raleway;
-                font-size: 1.5rem;
-                font-weight: 500;
-                line-height: 1.4;
-                letter-spacing: 0.07px;
-                text-align: left;
-
-                span {
-                    font-family: Raleway;
-                    font-size: 1.5rem;
-                    font-weight: 600;
-                }
-            }
+          span {
+            font-size: 1.8rem;
+          }
         }
+
+        p {
+          font-size: 0.8rem;
+        }
+      }
     }
 
     .book {
-        display: flex;
-        justify-content: center;
+      position: static;
+      margin-top: 55px;
+      margin-left: 50%;
+
+      button {
+        width: 250px;
+        height: 55px;
+        font-size: 1.6rem;
+        margin: 20% 0%;
+      }
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .Reserve {
+      img {
+        height: 60vh;
+      }
+      .week {
+        flex-direction: column;
         align-items: center;
-        position: absolute;
-        bottom: 25%;
-        left: 50%;
-        transform: translateX(-50%);
+        width: 100%;
+        top: 15%;
 
-        button {
-            width: 300px;
-            height: 60px;
-            background-color: transparent;
-            border-radius: 50px;
-            border: 2px solid black;
-            font-family: Raleway;
-            font-size: 1.8rem;
-            font-weight: 500;
-            text-align: center;
-            cursor: pointer;
-            transition: background-color 0.3s, color 0.3s;
-
-            &:hover {
-                background-color: black;
-                color: white;
-            }
+        .weekName {
+          width: 90%;
+          margin-bottom: 15px;
+          margin-top: 15%;
         }
+
+        .week2 {
+          h3 {
+            font-size: 1.5rem;
+          }
+
+          h4 {
+            font-size: 1.3rem;
+
+            span {
+              font-size: 1.5rem;
+            }
+          }
+
+          p {
+            font-size: 1rem;
+          }
+        }
+      }
     }
 
-    // Media Queries for Full Responsiveness
-    @media screen and (max-width: 1024px) {
-        .week {
-            flex-direction: column;
-            align-items: center;
-            width: 90%;
-            top: 15%;
+    .book {
+      position: static;
+      margin-top: 15px;
+      margin-left: 45%;
+      margin-top: 50%;
 
-            .weekName {
-                width: 100%;
-                margin-bottom: 20px;
-            }
-
-            .week2 {
-                h3 {
-                    font-size: 2rem;
-                }
-
-                h4 {
-                    font-size: 1.8rem;
-
-                    span {
-                        font-size: 2rem;
-                    }
-                }
-
-                p {
-                    font-size: 1.3rem;
-                }
-            }
-        }
-
-        .book {
-            bottom: 3%;
-            button {
-                width: 260px;
-                height: 55px;
-                font-size: 1.6rem;
-            }
-        }
+      button {
+        width: 230px;
+        height: 75px;
+        font-size: 1.4rem;
+      }
     }
-
-    @media screen and (max-width: 768px) {
-        .week {
-            width: 100%;
-            top: 10%;
-            flex-direction: row !important;
-
-            .weekName {
-                width: 50%;
-            }
-
-            .week2 {
-                h3 {
-                    font-size: 1.8rem;
-                }
-
-                h4 {
-                    font-size: 1.6rem;
-
-                    span {
-                        font-size: 1.8rem;
-                    }
-                }
-
-                p {
-                    font-size: 1.2rem;
-                }
-            }
-        }
-.reserve{
-        .book {
-            bottom: 40%;
-            button {
-                width: 230px;
-                height: 50px;
-                font-size: 1.4rem;
-            }
-        }
+  }
+}
+@media screen and (max-width: 480px) {
+  .Reserve {
+    height: 100%;
+    img {
+      height: 50vh;
     }
+    .book {
+      position: static !important;
+      margin-top: 50%;
+      margin-left: 45%;
     }
-    @media screen and (max-width: 480px) {
-       
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            position: relative;
-        
-        .aa {
-            display: none; // Hide image on small screens
-        }
-
-        .week {
-            flex-direction: column !important;
-            align-items: center;
-            top: 15%;
-            width: 100%;
-
-            .weekName {
-                width: 100%;
-                margin-bottom: 15px;
-                img {
-                    width: 80%;
-                    height: auto;
-                }
-            }
-
-            .week2 {
-                h3 {
-                    font-size: 1.6rem;
-                }
-
-                h4 {
-                    font-size: 1.4rem;
-
-                    span {
-                        font-size: 1.6rem;
-                    }
-                }
-
-                p {
-                    font-size: 1rem;
-                }
-            }
-        }
-
-        .book {
-            bottom: 5%;
-            button {
-                width: 200px;
-                height: 45px;
-                font-size: 1.2rem;
-            }
-        }
+    .weekName {
+      // transform: translate((0px, -8%));
+      margin-top: 5%;
+      padding: 0;
     }
+    .week2 {
+      background: #eeeeee;
+      color: #333;
+      padding: 20px;
+      text-align: left !important;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .Reserve {
+    height: 100%;
+    img {
+      height: 40vh;
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .Reserve {
+    height: 100%;
+    img {
+      height: 40vh;
+    }
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .book1 {
+    position: absolute;
+    top: 0;
+  }
+}
+.booking-container {
+  // background-color: #f8f9fa;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.vehicle-name {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.canvas-container {
+  position: sticky;
+  top: 100px;
+}
+.total-price {
+  color: #28a745;
+}
+.bg-checkout-main {
+//   background-image: linear-gradient(-225deg, #b7f8db 0%, #50a7c2 100%);
+// background-image: url(https://img.freepik.com/free-photo/close-up-golf-ball-flag_23-2151014892.jpg?uid=R187744377&ga=GA1.1.2076956031.1739515128&semt=ais_hybrid);
+// background-repeat: no-repeat;
+// background-size: cover;
+// background-position: center;
+// background-image: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);
+background-image: linear-gradient(to top, #fddb92 0%, #d1fdff 100%);
+}
+
+.spinner-icon {
+  animation: spin 1s linear infinite;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
