@@ -1,0 +1,130 @@
+// HomeSection3.scss
+.kk{
+    font-family: Raleway;
+    margin-top: 10%;
+.home3-header {
+    text-align: center;
+    margin-bottom: 20px;
+
+    h1 {
+        font-size: 2rem;
+        color: black;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+}
+
+.home3-details {
+    max-width: 1000px; // Adjust the width to fit all inputs in a row
+    margin: 0 auto;
+    padding: 20px;
+
+
+
+    display: flex; // Use flexbox for the entire container
+    justify-content: space-between; // Space between items to avoid overlap
+    flex-wrap: wrap; // Allow wrapping if there's not enough space
+    gap: 30px; // Increase the gap between the fields to 20px
+
+    @media (max-width: 768px) {
+        flex-direction: column; // For smaller screens, stack them vertically
+    }
+
+    .input-wrapper,
+    .date-wrapper {
+        flex: 1; // Make each input take equal space in the row
+        min-width: 200px; // Ensure inputs don't shrink too much on smaller screens
+
+        label {
+            display: block;
+            font-size: 1rem;
+            color:black;
+            margin-bottom: 5px;
+
+            i {
+                margin-right: 8px;
+            }
+        }
+
+        input[type="text"],
+        input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            transition: border 0.3s ease;
+
+            &:focus {
+                border: 1px solid #666;
+                outline: none;
+            }
+
+            &::placeholder {
+                color: #999;
+            }
+        }
+    }
+}
+
+.date-input,
+.location-input {
+    display: flex;
+    flex: 1; // Ensure the inputs take equal space within their rows
+    gap: 25px; // Increased the gap between input fields to 25px
+
+    @media (max-width: 768px) {
+        flex-direction: column; // Stack vertically on small screens
+        gap: 15px; // Adjust gap on smaller screens
+    }
+}
+
+.date-input .date-wrapper,
+.location-input .input-wrapper {
+    flex: 1; // Each input field takes up equal space within the row
+}
+
+.date-input .date-box {
+    font-family: inherit;
+    color:black;
+    padding: 10px;
+    background-color: white;
+}
+
+.pp {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    margin: auto;
+
+    button {
+        background-color: black;
+        color: white;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border: none;
+        padding: 7px;
+        border-radius: 10px;
+        font-family: Raleway;
+        font-size: 19.33px;
+        font-weight: 500;
+        line-height: 22.69px;
+        letter-spacing: 0.0549129918217659px;
+        text-align: left;
+
+
+
+
+    }
+}
+
+// Add responsiveness for even smaller screens
+@media (max-width: 768px) {
+    .home3-header h1 {
+        font-size: 1.8rem;
+    }
+}
+}

@@ -1,0 +1,196 @@
+// // .home1 {
+// //   .image-container {
+// //     position: relative;
+// //     overflow: hidden;
+    
+// //     top: 0;
+
+// //     .background-image {
+// //       width: 100%;
+// //       height: auto;
+// //       display: block;
+// //     }
+
+// //     .home1-btn {
+// //       position: absolute;
+// //       display: flex;
+// //       justify-content: center;
+// //       align-items: center;
+// //       width: 100%;
+// //       // height: 100%;
+// //      bottom: 5%;
+// //       left: 0;
+
+// //       button {
+// //         width: 225px;
+// //         height: 62px;
+// //         opacity: 1;
+// //         font-family: Raleway, sans-serif;
+// //         font-size: 26.9px;
+// //         font-weight: 500;
+// //         line-height: 52.11px;
+// //         letter-spacing: 0.1px;
+// //         text-align: center;
+// //         border: 1px solid black;
+// //         border-radius: 50px;
+// //         padding: 0.2em;
+// //         background-color: #ffffffd7; // Change this to your desired color // Change or remove if you have custom styles
+// //         cursor: pointer;
+// //       }
+// //     }
+// //   }
+// // }
+
+// // @media (max-width: 768px) {
+// //   .home1-btn button {
+// //     width: 180px;
+// //     height: 50px;
+// //     font-size: 20px;
+// //   }
+// // }
+
+// // @media (max-width: 480px) {
+// //   .home1-btn button {
+// //     width: 150px;
+// //     height: 40px;
+// //     font-size: 18px;
+// //   }
+// // }
+// .home1 {
+//   .image-container {
+//     overflow: hidden;
+//     top: 0;
+
+//     .background-image {
+//       width: 100%;
+//       height: 650px;
+//       display: block;
+//     }
+
+//     .home1-btn {
+//       position: absolute;
+//       display: flex;
+//       justify-content: center;
+//       align-items: center;
+//       width: 100%;
+//       bottom: -15%;
+//       left: 0;
+//       z-index: 10; // Ensure button is above other content
+
+//       button {
+//         width: 255px;
+//         height: 72px;
+//         opacity: 1;
+//         font-family: Raleway, sans-serif;
+//         font-size: 26.9px;
+//         font-weight: 600;
+//         line-height: 52.11px;
+//         letter-spacing: 0.1px;
+//         text-align: center;
+//         background-color: transparent; // Set to transparent
+//         border: 2px solid black;
+//         border-radius: 50px;
+//         padding: 0.2em;
+//         cursor: pointer;
+//         z-index: 10; // Ensure button text is above background
+//       }
+//     }
+//   }
+// }
+
+// @media (max-width: 768px) {
+//   .home1-btn button {
+//     width: 180px;
+//     height: 50px;
+//     font-size: 20px;
+//   }
+// }
+
+// @media (max-width: 480px) {
+//   .home1-btn button {
+//     width: 150px;
+//     height: 40px;
+//     font-size: 18px;
+//   }
+// }
+.home1 {
+  .image-container {
+    position: relative; // Set relative positioning to align the button with this container
+    overflow: hidden;
+    top: 0;
+    z-index: -1;
+
+    .background-image {
+      width: 100%;
+      height: 650px; // Adjusted for larger screens
+      display: block;
+    }
+
+    .home1-btn {
+      position: absolute; // Button is now positioned relative to the image container
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      bottom: 5%; // Place the button near the bottom of the image
+      left: 0;
+      z-index: 10;
+
+      button {
+        width: 225px;
+        height: 60px;
+        opacity: 1;
+        font-family: Raleway, sans-serif;
+        font-size: 24px;
+        font-weight: 600;
+        letter-spacing: 0.1px;
+        background-color: transparent;
+        border: 2px solid black;
+        border-radius: 50px;
+        padding: 0.3em;
+        cursor: pointer;
+        z-index: 10;
+
+        &:hover {
+          background-color: #f5f5f5; // Lighter on hover for interaction feedback
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1024px) {
+  .image-container .background-image {
+    height: 500px; // Adjusted height for medium screens
+  }
+
+  .home1-btn button {
+    width: 200px;
+    height: 55px;
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 768px) {
+  .image-container .background-image {
+    height: 400px; // Reduced further for smaller screens
+  }
+
+  .home1-btn button {
+    width: 180px;
+    height: 50px;
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .image-container .background-image {
+    height: 300px; 
+  }
+
+  .home1-btn button {
+    width: 150px;
+    height: 45px;
+    font-size: 18px;
+  }
+}

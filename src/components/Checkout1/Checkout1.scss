@@ -1,0 +1,80 @@
+// Checkout1.scss
+.cart-models {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 20px;
+  
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  
+    @media (min-width: 1024px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
+  .cart-card {
+    background: linear-gradient(53.21deg, #d3d8aa 35.18%, #cac712d7 15.94%);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  
+    @media (min-width: 768px) {
+      flex-direction: row;
+    }
+  
+    .cart-image {
+      width: 100%;
+      height: auto;
+  
+      @media (min-width: 768px) {
+        width: 50%;
+      }
+    }
+  
+    .cart-details {
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      margin-left: 3em;
+  
+      @media (min-width: 768px) {
+        width: 50%;
+        text-align: left;
+        align-items: flex-start;
+      }
+  
+      .cart-passengers{
+        font-size: 1em;
+        font-weight: 500;
+      }
+      .cart-name,
+      .cart-price,
+      .cart-rating {
+        margin: 5px 0;
+        font-weight: 600;
+        font-size: 1.2em;
+      }
+  
+      .continue-button {
+        background-color: #383835;
+        border: 1px solid black;
+        color: white;
+        padding: 10px 15px;
+        border-radius: 50px;
+        cursor: pointer;
+        margin-top: 18px;
+        &:hover{
+            background-color: #e0e031;
+            color: rgb(46, 44, 44);
+        }
+      }
+    }
+  }
+  

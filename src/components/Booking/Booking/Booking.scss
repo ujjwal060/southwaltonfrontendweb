@@ -1,0 +1,25 @@
+.button1 {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 1rem;
+    height: auto;
+
+    .bbook {
+        background-color: #cfc312;
+        width: 100%;
+        color: #000;
+        height: auto;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 30px;
+        cursor: pointer;
+        margin-top: 1em;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+            background-color: #ece9e9;
+            color: rgb(44, 41, 41);
+        }
+    }
+}

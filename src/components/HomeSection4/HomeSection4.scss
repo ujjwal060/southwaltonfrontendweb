@@ -1,0 +1,80 @@
+.service-areas {
+    text-align: center;
+    padding: 20px;
+
+    h2 {
+        font-size: 2.5rem;
+        font-weight: 600;
+        margin-bottom: 40px;
+        font-family: 'Raleway';
+    }
+
+    .areas {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 40px;
+
+        .area {
+            flex: 1 1 calc(25% - 20px);
+            max-width: calc(22% - 20px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            // Removed hover effect
+
+            img {
+                width: 100%;
+                height: auto;
+                display: block;
+            }
+
+            p {
+                padding: 10px;
+                margin: 0;
+                background-color: white;
+                font-family: Raleway;
+                font-size: 30px;
+                font-weight: 700;
+                line-height: 46.96px;
+                text-align: left;
+            }
+        }
+    }
+
+    .see-all {
+        margin-top: 50px;
+        padding: 10px 20px;
+        background-color: #BBBC32;
+
+        border: none;
+        border-radius: 50px;
+        font-size: 1rem;
+        font-weight: bold;
+        color: #333;
+        cursor: pointer;
+        // Removed hover effect
+    }
+}
+
+@media (max-width: 768px) {
+    .service-areas {
+        .areas {
+            .area {
+                flex: 1 1 calc(50% - 20px);
+                max-width: calc(40% - 20px);
+            }
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .service-areas {
+        .areas {
+            .area {
+                flex: 1 1 100%;
+                max-width: 100%;
+            }
+        }
+    }
+}

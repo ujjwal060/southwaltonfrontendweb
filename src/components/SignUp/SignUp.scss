@@ -1,0 +1,179 @@
+$primary-color: #ac9309;
+$text-color: #0c0c0c;
+$font-family: 'Raleway', sans-serif;
+
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
+
+.container {
+  background: #fff;
+  padding: 4rem;
+  border-radius: 10px;
+  max-width: 700px;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 2rem auto;
+
+  h1 {
+    font-family: Raleway;
+    font-size: 3rem; // Adjusted for responsiveness
+    font-weight: 800;
+    line-height: 1.2;
+    text-align: center;
+    margin-bottom: 4rem;
+    margin-top: -1rem;
+    text-decoration: underline;
+  }
+}
+
+.signup-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2em;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+
+  label {
+    font-family: Raleway;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.7;
+    text-align: left;
+  }
+
+  .form-group {
+    // margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 25%;
+
+    input {
+      width: 70%;
+      padding: 0.75rem;
+      border: 1px solid $text-color;
+      border-radius: 30px;
+      font-size: 1rem;
+      box-sizing: border-box;
+    }
+  }
+
+  .button-signup {
+    grid-column: span 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2em;
+    margin-right: 15em;
+    
+    .submit-btn {
+      width: 100%;
+      max-width: 200px;
+      background-color: #b4af00;
+      color: #fff;
+      padding: 0.75rem;
+      border: none;
+      border-radius: 35px;
+      cursor: pointer;
+      font-size: 1.1rem;
+      text-align: center;
+
+      &:hover {
+        background: #333;
+        color: white;
+      }
+    }
+  }
+}
+
+// Adjustments for different screen sizes
+@media (max-width: 1024px) {
+  .container {
+    padding: 3rem;
+    h1 {
+      font-size: 2.5rem;
+    }
+  }
+
+  .signup-form {
+    gap: 1.5em;
+
+    .form-group input {
+      font-size: 0.9rem;
+    }
+
+    label {
+      font-size: 0.9rem;
+    }
+  }
+
+  .button-signup .submit-btn {
+    width: 100%;
+    max-width: 180px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 2rem;
+    margin: 1rem;
+    h1 {
+      font-size: 2rem;
+    }
+  }
+
+  .signup-form {
+    gap: 1em;
+
+    .form-group input {
+      font-size: 0.85rem;
+      width: 70%;
+    }
+
+    label {
+      font-size: 0.85rem;
+    }
+  }
+
+  .button-signup .submit-btn {
+    width: 100%;
+    max-width: 160px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 1.5rem;
+    margin: 1rem;
+    h1 {
+      font-size: 1.5rem;
+    }
+  }
+
+  .signup-form {
+    gap: 0em;
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      width: 70%;
+      align-items:flex-start;
+      input {
+        width: 90%;
+        padding: 0.75rem;
+        border-radius: 20px;  // Slightly smaller radius for small screens
+        font-size: 0.6rem;
+      }
+    }
+
+    label {
+      font-size: 0.8rem;
+    }
+  }
+
+  .button-signup .submit-btn {
+    width: 100%;
+    max-width: 140px;
+  }
+}

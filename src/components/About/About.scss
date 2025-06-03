@@ -1,0 +1,310 @@
+$primary-color: #d8e034;
+$text-color: #000;
+$font-family: 'Raleway', sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
+
+.about-us1 {
+  padding: 1.8rem;
+  text-align: center;
+  margin-top:2%;
+
+  .about-heading {
+    font-family: Raleway;
+    font-size: 45px;
+    font-weight: 600;
+    line-height: 98.66px;
+    text-align: center;
+    text-decoration: underline;
+    // margin-left: 10%;
+
+    // &:hover {
+    //   color: #b4bd12;
+    // }
+  }
+
+  .about-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 2rem auto;
+    max-width: 1200px;
+
+    .text-content {
+      flex: 1;
+      padding-right: 2rem;
+      text-align: left;
+
+      .text-heading-content1 {
+        font-family: Raleway;
+        font-size: 32px;
+        font-weight: 700;
+        line-height: 42.26px;
+        text-align: left;
+        margin-left: 6rem;
+      }
+
+      .text-heading-content2 {
+        font-family: $font-family;
+        font-size: 1.4rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        margin-left: 6rem;
+      }
+
+      .about-para {
+        font-family: $font-family;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.4;
+        margin-bottom: 1rem;
+        color: #000000;
+        margin-left: 6rem;
+      }
+    }
+
+    .image-content {
+      flex: 0 0 300px; // Fixed size for the logo
+
+      img {
+        width: 60%;
+        height: auto;
+        border-radius: 50%; // Make the image circular
+
+        &:hover {
+          transform: scale(1.1);
+        }
+      }
+    }
+  }
+}
+
+.about-us2 {
+  .terms-condition {
+    font-family: Raleway;
+    font-size: 35px;
+    font-weight: 600;
+    line-height: 98.66px;
+    text-align: center;
+    text-decoration: underline;
+  }
+
+  .first {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto; // Center horizontally
+
+    .tc-para {
+      font-family: Raleway;
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 30px;
+      // text-align: center;
+      padding: 2%;
+      color: #0c0b0b;
+    }
+  }
+}
+
+// Responsive adjustments for .about-us1
+@media (max-width: 1024px) {
+    .about-us1 {
+      .about-heading {
+        font-size: 60px; // Adjust font size for smaller screens
+      }
+  
+      .about-content {
+        flex-direction: column;
+        text-align: center;
+  
+        .text-content {
+          padding-right: 0;
+          padding-bottom: 2rem;
+          margin-left: 5%;
+        }
+  
+        .image-content {
+          flex: 0 0 300px; // Adjust size for smaller screens
+          margin-bottom: 0.2rem;
+  
+          img {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .about-us1 {
+
+      .about-heading {
+        font-size: 50px; // Adjust font size for smaller screens
+      }
+  
+      .about-content {
+        display: flex;
+        flex-direction: column-reverse;
+        .text-content {
+          text-heading-content1 {
+            font-size: 1.8rem;
+          }
+  
+          .text-heading-content2 {
+            font-size: 1.5rem;
+            margin-left: 10%;
+          }
+  
+          .about-para {
+            font-size: 1rem;
+          }
+        }
+  
+        .image-content {
+          flex: 0 0 0px; // Adjust size for smaller screens
+  
+          img {
+            width: 100%;
+            height: 50vh;
+          }
+        }
+      }
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .about-us1 {
+      .about-heading {
+        font-size: 40px; // Adjust font size for smaller screens
+      }
+  
+      .about-content {
+        .text-content {
+          .text-heading-content1 {
+            font-size: 1.5rem;
+            margin-left:  0;
+          }
+  
+          .text-heading-content2 {
+            font-size: 1.3rem;
+            margin-left:  0;
+          }
+  
+          .about-para {
+            font-size: 0.9rem;
+            margin-left:  0;
+          }
+        }
+
+        .image-content {
+          flex: 0 0 200px; // Adjust size for smaller screens
+  
+          img {
+            width: 100%;
+            height: 40vh;
+          }
+        }
+      }
+    }
+  }
+
+  .about-us2 .first {
+    width: 100%;
+    margin-left: 0;
+    padding-left: 8%;
+    padding-right: 8%;
+}
+
+
+// Responsive adjustments for .about-us2
+@media (max-width: 1024px) {
+  .about-us1 .about-content {
+    flex-direction: column; 
+    text-align: center;
+}
+.about-us1 .about-content .text-content {
+  padding-right: 0;
+  padding-bottom: 2rem;
+  margin-left: auto;
+}
+.about-us1 .about-content .image-content img {
+  width: 60%;
+  margin-bottom: -25%;
+}
+
+  .about-us2 {
+    .about-heading{
+      font-size: 60px;
+      line-height: 85px;
+    }
+
+    .first {
+      width: 90%;
+      margin-left: 0;
+      .about-para {
+        font-size: 18px;
+        line-height: 35px;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  // added
+
+    .about-us1 .about-content .image-content img {
+        width: 85%;
+        height: 20vh;
+        margin-bottom: 25%;
+    }
+
+  .about-us1 .about-content .text-content .about-para {
+    font-size: 1rem;
+    margin-left: 2px;
+}
+
+.about-us1 .about-content .text-content .text-heading-content2 {
+  font-size: 1.5rem;
+  margin-left: 2px;
+}
+
+.about-us1 .about-content .text-content .text-heading-content1 {
+  margin-left: 2px;
+}
+//........................................
+  .about-us2 {
+    .about-heading {
+      font-size: 50px;
+      line-height: 70px;
+    }
+
+    .first {
+      width: 95%;
+      margin-left: 0;
+      .about-para {
+        font-size: 16px;
+        line-height: 30px;
+        margin-left: 0;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .about-us2 {
+    .about-heading {
+      font-size: 40px;
+    //   line-height: 55px;
+    }
+
+    .first {
+      width: 100%;
+      margin-left: 0;
+      .about-para {
+        font-size: 14px;
+        line-height: 25px;
+      }
+    }
+  }
+}

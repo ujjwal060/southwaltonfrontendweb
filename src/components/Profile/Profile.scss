@@ -1,0 +1,165 @@
+.profile-update {
+
+   // Profile.scss
+.profile1 {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 5em;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .image-section {
+    width: 30%;
+    height: auto;
+    @media (max-width: 768px) {
+      margin-bottom: 1em;
+    }
+
+    img {
+    width: 80%;
+      height: auto;
+      border-radius: 50%; // Optional, if you want a circular image
+    }
+  }
+
+  .field-section {
+    .profile-form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2em;
+
+      @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+      }
+
+      label {
+        font-family: Raleway;
+        font-size: 1rem;
+        font-weight: 500;
+        line-height: 1;
+        text-align: left;
+      }
+
+      .form-group {
+        margin-bottom: 1.5rem;
+
+        input {
+          width: 100%;
+          padding: 0.75rem;
+          border: 1px solid black;
+          border-radius: 30px;
+          font-size: 1rem;
+          box-sizing: border-box;
+        }
+      }
+    }
+
+    .button-profile {
+      display: flex;
+      justify-content: space-evenly;
+      margin-top: 2em;
+
+      button {
+        width: 10em;
+        padding: 0.7em;
+        background-color: #b4af00;
+        border-radius: 70px;
+        border: none;
+        font-size: 1em;
+        font-weight: 600;
+
+        &:hover {
+          background: #333;
+          color: white;
+        }
+      }
+    }
+  }
+}
+
+.profile2 {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 5em;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .image-section {
+    @media (max-width: 768px) {
+      margin-bottom: 1em;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 50%; // Optional, if you want a circular image
+    }
+  }
+
+  .field-section {
+    .profile-form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2em;
+      margin-top: 7em;
+
+      @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+      }
+
+      label {
+        font-family: Raleway;
+        font-size: 1rem;
+        font-weight: 500;
+        line-height: 1.7;
+        text-align: left;
+      }
+
+      .form-group {
+        margin-bottom: 1.5rem;
+
+        input {
+          width: 100%;
+          padding: 0.75rem;
+          border: 1px solid black;
+          border-radius: 30px;
+          font-size: 1rem;
+          box-sizing: border-box;
+        }
+      }
+    }
+
+    .button-profile {
+      display: flex;
+      justify-content: space-evenly;
+      margin-top: 2em;
+
+      button {
+        width: 10em;
+        padding: 0.7em;
+        background-color: #b4af00;
+        border-radius: 70px;
+        border: none;
+        font-size: 1em;
+        font-weight: 600;
+
+        &:hover {
+          background: #333;
+          color: white;
+        }
+      }
+    }
+  }
+}
+
+
+  // Profile2.scss
+
+
+}

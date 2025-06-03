@@ -1,0 +1,110 @@
+.feedback-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2em;
+  
+    .illustration-section {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      img {
+        max-width: 90%;
+        height: auto;
+      }
+    }
+  
+    .form-section {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  
+      .form {
+        display: flex;
+        flex-direction: column;
+        padding: 2em;
+        width: 60%;
+  
+        .form-group {
+          display: flex;
+          flex-direction: column;
+          margin-bottom: 1em;
+  
+          label {
+            font-size: 1.2em;
+            font-weight: 500;
+            margin-bottom: 0.5em;
+          }
+  
+          input,
+          textarea {
+            padding: 1em;
+            border: 1px solid #ccc;
+            border-radius: 50px;
+          }
+  
+          textarea {
+            resize: vertical;
+            height: 30px; /* Adjusted height */
+          }
+        }
+  
+        .time-period {
+          display: flex;
+          flex-direction: row;
+          gap: 1em;
+  
+          div {
+            flex: 1;
+  
+            label {
+              font-size: 1.2em;
+              font-weight: 500;
+              margin-bottom: 0.5em;
+            }
+  
+            input {
+              padding: 1em;
+              border: 1px solid #ccc;
+              border-radius: 50px;
+            }
+          }
+        }
+  
+        .feedback-btn{
+            display: flex;
+            justify-content: center;
+            margin-top: 2em;
+            button {
+              padding: 0.75em;
+              border: none;
+              border-radius: 50px;
+              background-color: #3f3f3e;
+              color: white;
+              font-size: 1em;
+              width: 8vw;
+              cursor: pointer;
+              transition: background-color 0.3s ease;
+      
+              &:hover {
+                background-color: #b3a211;
+              }
+            }
+        }
+      }
+    }
+  
+    @media (max-width: 768px) {
+      flex-direction: column;
+  
+      .form-section {
+        width: 100%;
+  
+        .form {
+          width: 100%;
+        }
+      }
+    }
+  }
+  

@@ -1,0 +1,250 @@
+.booking-form {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    margin-top:3%;
+    padding-top: 0%;
+
+    h1 {
+        text-align: center;
+        margin-bottom: 1.5em;
+        font-size: 2.5rem;
+        font-weight: 600;
+        color: #333;
+    }
+
+    .home3-details {
+        display: flex;
+        align-items: center;
+        gap: 3rem;
+        margin-bottom: 2rem;
+        width: 95%;
+        .dates .date-1 i{
+            margin-right: 0.5em;
+        }
+        .location-input,
+        .dates {
+            display: flex;
+            flex-direction: column; // Default to column for mobile view
+            align-items: stretch;
+            gap: 1rem;
+            width: 100%;
+        }
+
+        .input-wrapper,
+        .date-1 {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            width: 100%;
+
+            label {
+                font-size: 1rem;
+                font-weight: bold;
+                color: #555;
+            }
+
+            input[type="text"],
+            input[type="date"] {
+                padding: 1rem;
+                font-size: 0.9rem;
+                width: 100%;
+                border: 1px solid #ccc;
+                border-radius: 50px;
+                background-color: #fff;
+                color: #333;
+            }
+        }
+    }
+
+    .form-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        // margin-bottom: 5px;
+        // background-color: red;
+        padding-left: 5%;
+
+        @media (max-width: 1024px) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        @media (max-width: 768px) {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        label {
+            margin-bottom: 10px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: #555;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="number"],
+        input[type="file"] {
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 50px;
+            font-size: 1rem;
+            background-color: #fff;
+            color: #333;
+            width: 100%;
+            max-width: 300px;
+        }
+    }
+
+    .drivers-section {
+        margin-top: 20px;
+
+        .driver-details {
+            border: 1px solid #eee;
+            // padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            background-color: #fafafa;
+
+            .remove-driver {
+                background-color: #ff4d4d;
+                color: #fff;
+                border: none;
+                padding: 10px 15px;
+                border-radius: 5px;
+                cursor: pointer;
+                margin-top: 10px;
+
+                &:hover {
+                    background-color: #ff2d2d;
+                }
+            }
+        }
+    }
+
+    .add-driver {
+        background-color: #bcbe37;
+        border: none;
+        padding: 12px 10px;
+        border-radius: 50px;
+        cursor: pointer;
+        width: 100%;
+        max-width: 200px;
+        margin: 20px auto;
+        font-size: 1.2rem;
+        font-weight: 500;
+        text-align: center;
+
+        &:hover {
+            background-color: #292927;
+            color: white;
+        }
+    }
+
+    .checkout-button {
+        display: flex;
+        justify-content: center;
+        margin-top: 2em;
+
+        .submit-check {
+            background-color: #bcbe19;
+            color: #fff;
+            border: none;
+            padding: 10px 1px;
+            border-radius: 50px;
+            width: 100%;
+            max-width: 300px;
+            font-size: 1.2rem;
+            font-weight: 500;
+
+            &:hover {
+                background-color: #292927;
+                color: white;
+            }
+        }
+    }
+
+    @media (max-width: 768px) {
+        padding: 10px;
+
+        h1 {
+            font-size: 2rem;
+        }
+
+        .form-grid {
+            grid-template-columns: 1fr;
+            text-align: center;
+        }
+
+        .form-group {
+            input[type="text"],
+            input[type="number"],
+            input[type="email"],
+            input[type="file"] {
+                padding: 10px;
+                font-size: 0.9rem;
+            }
+        }
+
+        .drivers-section {
+            .driver-details {
+                padding: 10px;
+
+                .remove-driver {
+                    padding: 8px 12px;
+                }
+            }
+        }
+
+        .add-driver,
+        .submit-check {
+            padding: 10px 15px;
+            font-size: 1rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        padding: 5px;
+
+        h1 {
+            font-size: 1.5rem;
+        }
+        .home3-details{
+            flex-direction: column;
+            width: 80%;
+        }
+
+        .form-group {
+            input[type="text"],
+            input[type="email"],
+            input[type="number"],
+            input[type="file"] {
+                padding: 8px;
+                font-size: 0.8rem;
+            }
+        }
+
+        .drivers-section {
+            .driver-details {
+                padding: 8px;
+
+                .remove-driver {
+                    padding: 6px 10px;
+                }
+            }
+        }
+
+        .add-driver,
+        .submit-check {
+            padding: 8px 12px;
+            font-size: 0.9rem;
+        }
+    }
+}

@@ -1,0 +1,53 @@
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; // Ensure it's above other content
+}
+
+.popup-content {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    position: relative; // To position the close button
+    width: 90%; // Make the popup box wider and responsive
+    max-width: 500px; // Limit the max width to prevent overflow
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); // Add a shadow for depth
+    text-align: center; // Center the text
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #333; // Color of the close button
+    z-index: 1001; // Ensure the close button is above popup content
+}
+
+.popup-buttons {
+    display: flex;
+    justify-content: center;
+}
+
+.popup-button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #BBBC32; // Button background color
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.popup-button:hover {
+    background-color: #333; // Darker shade for hover effect
+}

@@ -1,0 +1,149 @@
+.contactus {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    padding-top: 5%;
+
+    .page {
+        display: flex;
+        width: 100%;
+        max-width: 1200px;
+        background: #fff;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .part-1 {
+        width: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+    }
+
+    .part-2 {
+        width: 50%;
+        padding: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        form {
+            width: 100%;
+
+            p {
+                margin: 0;
+            }
+
+            .fields, .time {
+                margin-bottom: 20px;
+            }
+
+            input, textarea {
+                width: 100%;
+                padding: 12px;
+                margin-top: 8px;
+                border: 1px solid #ccc;
+                border-radius: 12px;
+                font-size: 16px;
+                box-sizing: border-box;
+                flex-grow: 1;  // Allowing the input to grow and fill available space
+            }
+
+            .time {
+                display: flex;
+                justify-content: space-between;
+                gap: 1rem;
+
+                div {
+                    width: 48%;
+                }
+            }
+
+            .Submit {
+                display: flex;
+                justify-content: center;
+
+                button {
+                    padding: 12px 30px;
+                    background-color:black;
+                    border: none;
+                    border-radius: 9px;
+                    color: white;
+                    cursor: pointer;
+                    font-size: 18px;
+                    transition: background-color 0.3s ease;
+
+                    &:hover {
+                        background-color: #0056b3;
+                    }
+                }
+            }
+        }
+    }
+
+    @media (max-width: 1024px) {
+        .page {
+            flex-direction: column;
+        }
+
+        .part-1, .part-2 {
+            width: 100%;
+        }
+
+        .part-1 img {
+            width: 100%;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .part-2 {
+            padding: 20px;
+
+            form {
+                width: 100%;
+            }
+
+            .time {
+                flex-direction: column;
+
+                div {
+                    width: 100%;
+                    margin-bottom: 10px;
+                }
+            }
+
+            .Submit {
+                button {
+                    width: 100%;
+                    padding: 12px;
+                }
+            }
+        }
+    }
+
+    @media (max-width: 480px) {
+        .part-2 {
+            padding: 15px;
+        }
+
+        .fields, .time {
+            margin-bottom: 15px;
+        }
+
+        input, textarea {
+            font-size: 14px;
+            padding: 10px;  // Adjusting padding for smaller screens
+        }
+
+        .Submit button {
+            font-size: 16px;
+        }
+    }
+}

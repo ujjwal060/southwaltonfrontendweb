@@ -1,0 +1,98 @@
+.Payment {
+  .payment-container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    margin-top: 4%;
+  }
+
+  .input-container {
+    margin-bottom: 20px;
+  }
+
+  .input-container label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #333;
+  }
+
+  .input-container input,
+  .stripe-input {
+    display: block;
+    width: calc(100% - 10px); /* Adjusting width to add margin on the right */
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    margin-right: 10px; /* Add margin-right to input fields */
+  }
+
+  .stripe-input {
+    height: 40px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
+  }
+
+  .split-input {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    margin-bottom: 1em;
+    gap: 10px;
+  }
+
+  .split-input .stripe-input {
+    flex: 1;
+    margin-right: 10px; /* Add margin-right to Stripe input */
+  }
+
+  button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 4px;
+    background-color: #d8e034;
+    color: black;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  button:hover {
+    background-color: #333;
+    color: white;
+  }
+
+  button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+  }
+
+  .message {
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 4px;
+    color: #d9534f;
+    background-color: #f2dede;
+  }
+}
+
+@media (max-width: 600px) {
+  .payment-container {
+    padding: 15px;
+  }
+
+  .split-input {
+    flex-direction: column;
+  }
+
+  .split-input .stripe-input {
+    margin-bottom: 10px;
+  }
+}
+

@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
+
+$font-family: 'Raleway', sans-serif;
+
+.invoice-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2em;
+  flex-wrap: wrap;
+  padding-top: 7%;
+
+  .icon-section {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+    img {
+      width: 30%;
+      height: auto;
+      padding-bottom: 22%;
+    }
+  }
+
+  .details-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 1em;
+    font-family: $font-family;
+
+    p {
+      margin: 0.5em 0;
+      font-size: 1em;
+
+      strong {
+        font-weight: 700;
+      }
+    }
+
+    .invoice-button {
+      padding: 0.75em 1.5em;
+      border: none;
+      border-radius: 25px;
+      background-color: #b2b728;
+      color: #333;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin-top: 2em;
+
+      &:hover {
+        background-color: #a0a51e;
+      }
+    }
+  }
+
+  .next-button {
+    background-color: #b4af00;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 35px;
+    font-size: 19px;
+    cursor: pointer;
+    width: 30%;
+    margin-top: 2em;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: #333;
+    }
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    padding: 1em;
+
+    .icon-section {
+      img {
+        width: 50%; // Adjust the size for smaller screens
+      }
+    }
+
+    .details-section {
+      width: 100%;
+      align-items: center;
+
+      p {
+        font-size: 0.9em; // Adjust the font size for smaller screens
+      }
+
+      .invoice-button {
+        font-size: 0.9em; // Adjust the button size for smaller screens
+      }
+    }
+  }
+
+  @media (max-width: 480px) {
+    padding: 0.5em;
+
+    .icon-section {
+      img {
+        width: 60%; // Adjust the size for smaller screens
+      }
+    }
+
+    .details-section {
+      p {
+        font-size: 0.8em; // Adjust the font size for very small screens
+      }
+
+      .invoice-button {
+        font-size: 0.8em; // Adjust the button size for very small screens
+      }
+    }
+  }
+}
+
+.note {
+  .note-content {
+    font-style: italic;
+    color: red;
+    padding: 0 20%;
+    font-weight: 600;
+  }
+}
