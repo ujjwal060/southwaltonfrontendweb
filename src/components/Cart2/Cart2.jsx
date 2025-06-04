@@ -13,6 +13,7 @@ const Cart2 = () => {
   const [isPopupVisible, setPopupVisible] = useState(false);
   const [selectedCard, setSelectedCard] = useState(null);
   const [reservationDate, setReservationDate] = useState(null);
+  const [isLoading, setIsLoading] = useState(true); // Added loading state
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
 
@@ -139,7 +140,7 @@ const Cart2 = () => {
             );
           })
         ) : (
-          <h4>Loading...</h4>
+          <h4>No vehicles found</h4>
         )}
       </>
     );
@@ -150,6 +151,7 @@ const Cart2 = () => {
     if (reservationId) {
       const fetchReservationData = async () => {
         try {
+          setIsLoading(true); // Start loading
           const response = await axios.get(
             `http://18.209.91.97:5001/api/reserve/reservation/${reservationId}`
           );
@@ -186,12 +188,15 @@ const Cart2 = () => {
         } catch (err) {
           setError("Error fetching reservation data");
           console.log("Error fetching reservation data:", err);
+        } finally {
+          setIsLoading(false); // Stop loading whether successful or not
         }
       };
 
       fetchReservationData();
     } else {
       setError("No reservation ID found");
+      setIsLoading(false);
     }
   }, []);
 
@@ -224,6 +229,16 @@ const Cart2 = () => {
     }
   };
 
+  // Loader component
+  const Loader = () => (
+    <div className="text-center py-5">
+      <div className="spinner-border text-primary" role="status">
+        <span className="visually-hidden">Loading...</span>
+      </div>
+      <p className="mt-3">Loading vehicles...</p>
+    </div>
+  );
+
   return (
     <div className="Container">
       {error && <p className="error-message">{error}</p>}
@@ -232,30 +247,36 @@ const Cart2 = () => {
       )}
 
       <div className="container">
-        <div className="col-lg-12">
-          <h2 className="text-center mb-4">Select Cart</h2>
-          <div className="row gy-4">
-            {filteredCards.length === 0 ? (
-              <h4 className="no-vehicle-text">No vehicle Available...</h4>
-            ) : (
-              <CardList
-                cardDetails={filteredCards.slice(0, initialCardCount)}
-                onChoose={handleChoose}
-              />
-            )}
-          </div>
+        {isLoading ? (
+          <Loader />
+        ) : (
+          <>
+            <div className="col-lg-12">
+              <h2 className="text-center mb-4">Select Cart</h2>
+              <div className="row gy-4">
+                {filteredCards.length === 0 ? (
+                  <h4 className="no-vehicle-text">No vehicle Available...</h4>
+                ) : (
+                  <CardList
+                    cardDetails={filteredCards.slice(0, initialCardCount)}
+                    onChoose={handleChoose}
+                  />
+                )}
+              </div>
 
-          <div className="col-lg-12 mt-4">
-            <h2 className="text-center mb-4">Other Cart Suggestions</h2>
-            <div className="row gy-4">
-              {cardDetails.length === 0 ? (
-                <h4 className="loading-text">Loading...</h4>
-              ) : (
-                <CardList cardDetails={cardDetails} onChoose={handleChoose} />
-              )}
+              <div className="col-lg-12 mt-4">
+                <h2 className="text-center mb-4">Other Cart Suggestions</h2>
+                <div className="row gy-4">
+                  {cardDetails.length === 0 ? (
+                    <h4 className="loading-text">No vehicles found</h4>
+                  ) : (
+                    <CardList cardDetails={cardDetails} onChoose={handleChoose} />
+                  )}
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
+          </>
+        )}
       </div>
     </div>
   );
