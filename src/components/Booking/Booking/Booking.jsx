@@ -93,7 +93,6 @@ const Booking = () => {
                               objectFit: "cover",
                             }}
                             alt="Vehicle"
-                            onError={(e) => (e.target.style.display = "none")}
                           />
                         )}
                       </div>
