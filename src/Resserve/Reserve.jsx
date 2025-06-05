@@ -355,9 +355,9 @@ useEffect(() => {
                 <div className="vehicle-details rounded p-4 pt-0">
                   {vehicleDetails && (
                     <>
-                      <div className="d-flex justify-content-between align-items-center mb-3">
-                        <h6 className="vehicle-name mb-0 d-flex align-items-center">
-                          {vehicleDetails.vname || "Vehicle Name"}
+                      <div className="d-flex justify-content-between align-items-center mb-3 bg-light p-3">
+                        <h6 className="vehicle-name mb-0 d-flex align-items-center"><span>Vehicle Name: {vehicleDetails.vname || "Vehicle Name"}</span> 
+                           
                           <span className="badge bg-secondary ms-2">
                             {formatPassengerText(vehicleDetails.passenger || "4 Passenger")}
                           </span>
