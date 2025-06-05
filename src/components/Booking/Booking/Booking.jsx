@@ -82,15 +82,15 @@ const Booking = () => {
 
                     <div className="card-body d-flex flex-column">
                       <div className="text-center">
-                        {booking.reservationDetails.vehicleDetails?.image?.[0] && (
+                        {booking.reservationDetails.vehicleDetails?.image && (
                           <img
-                            src={booking.reservationDetails.vehicleDetails.image[0]}
+                            src={booking.reservationDetails.vehicleDetails.image}
                             className="img-fluid rounded shadow-sm"
                             style={{
+                              background: "#fff",
                               width: "100%",
                               height: "100%",
-                              maxHeight: "150px",
-                              objectFit: "cover",
+                              maxHeight: "180px",
                             }}
                             alt="Vehicle"
                           />
