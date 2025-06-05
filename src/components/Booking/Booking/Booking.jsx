@@ -11,7 +11,7 @@ const Booking = () => {
   const [error, setError] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const [limit, setLimit] = useState(2); 
+  const limit = 2; 
 
   const fetchBookings = async (page) => {
     setLoading(true);
@@ -38,7 +38,7 @@ const Booking = () => {
 
   useEffect(() => {
     fetchBookings(currentPage);
-  }, [currentPage, limit]);
+  }, [currentPage]);
 
   const handlePrevious = () => {
     if (currentPage > 1) setCurrentPage(currentPage - 1);
@@ -62,24 +62,6 @@ const Booking = () => {
 
       {/* Booking Section */}
       <div className="container mt-4">
-        {/* Limit Selector */}
-        <div className="d-flex justify-content-end mb-3">
-          <label className="me-2 fw-bold align-self-center">Bookings per page:</label>
-          <select
-            className="form-select w-auto"
-            value={limit}
-            onChange={(e) => {
-              setLimit(parseInt(e.target.value));
-              setCurrentPage(1); // Reset to page 1 on limit change
-            }}
-          >
-            <option value={2}>2</option>
-            <option value={4}>4</option>
-            <option value={6}>6</option>
-            <option value={10}>10</option>
-          </select>
-        </div>
-
         {loading ? (
           <p className="text-center">Loading...</p>
         ) : error ? (
@@ -111,7 +93,7 @@ const Booking = () => {
                               objectFit: "cover",
                             }}
                             alt="Vehicle"
-                            onError={(e) => e.target.style.display = "none"}
+                            onError={(e) => (e.target.style.display = "none")}
                           />
                         )}
                       </div>
@@ -131,12 +113,11 @@ const Booking = () => {
                         </p>
                         <p className="card-text">
                           <strong>📅 Booking Date:</strong>{" "}
-                          {new Date(booking.reservationDetails.pickdate).toLocaleDateString()}{" "}
-                          -{" "}
+                          {new Date(booking.reservationDetails.pickdate).toLocaleDateString()} -{" "}
                           {new Date(booking.reservationDetails.dropdate).toLocaleDateString()}
                         </p>
                         <p className="text-success mb-0">
-                          <strong>💰 Reservation Price: </strong>${booking.amount || "N/A"}
+                          <strong>💰 Booking Amount: </strong>${booking.amount || "N/A"}
                         </p>
                       </div>
                     </div>
