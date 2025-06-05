@@ -11,7 +11,7 @@ const Booking = () => {
   const [error, setError] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const limit = 2; 
+  const limit = 3; 
 
   const fetchBookings = async (page) => {
     setLoading(true);
