@@ -25,7 +25,7 @@ const InvoiceDetails = () => {
       const fetchPaymentDetails = async () => {
         try {
           const response = await axios.get(
-            `http://18.209.91.97:5001/api/pay/complete-payment?session_id=${sessionId}`
+            `http://localhost:5001/api/pay/complete-payment?session_id=${sessionId}`
           );
           if (response.status === 200) {
             setOrderHistory(response.data.data);
