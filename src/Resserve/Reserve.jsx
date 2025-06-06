@@ -103,28 +103,28 @@ const Reserve = ({ hideContent }) => {
   }, [vehicleId, reservationDates]);
 
   // Calculate price and store in localStorage
-useEffect(() => {
-  if (vehicleDetails && reservationDates) {
-    const base = parseFloat(
-      vehicleDetails.totalPrice.replace(/[^0-9.]/g, "")
-    );
-    setBaseRental(base);
+  useEffect(() => {
+    if (vehicleDetails && reservationDates) {
+      const base = parseFloat(
+        vehicleDetails.totalPrice.replace(/[^0-9.]/g, "")
+      );
+      setBaseRental(base);
 
-    const rentalWithFees = base * 1.12;
-    
-    // Calculate reservation price based on whether tax should be shown
-    const reservationDeposit = 100;
-    const reservationTax = showTax ? reservationDeposit * 0.07 : 0;
-    const reservationPrice = reservationDeposit + reservationTax;
-    
-    const totalAmount = rentalWithFees + reservationPrice;
+      const rentalWithFees = base * 1.12;
 
-    const formattedTotal = totalAmount.toFixed(2);
-    setCalcPrice(formattedTotal);
+      // Calculate reservation price based on whether tax should be shown
+      const reservationDeposit = 100;
+      const reservationTax = showTax ? reservationDeposit * 0.07 : 0;
+      const reservationPrice = reservationDeposit + reservationTax;
 
-    localStorage.setItem("totalAmount", formattedTotal);
-  }
-}, [vehicleDetails, reservationDates, showTax]); // Added showTax to dependencies
+      const totalAmount = rentalWithFees + reservationPrice;
+
+      const formattedTotal = totalAmount.toFixed(2);
+      setCalcPrice(formattedTotal);
+
+      localStorage.setItem("totalAmount", formattedTotal);
+    }
+  }, [vehicleDetails, reservationDates, showTax]); // Added showTax to dependencies
 
   // Update canvas with vehicle image
   useEffect(() => {
@@ -356,8 +356,8 @@ useEffect(() => {
                   {vehicleDetails && (
                     <>
                       <div className="d-flex justify-content-between align-items-center mb-3 bg-light p-3">
-                        <h6 className="vehicle-name mb-0 d-flex align-items-center"><span>Vehicle Name: {vehicleDetails.vname || "Vehicle Name"}</span> 
-                           
+                        <h6 className="vehicle-name mb-0 d-flex align-items-center"><span>Vehicle Name: {vehicleDetails.vname || "Vehicle Name"}</span>
+
                           <span className="badge bg-secondary ms-2">
                             {formatPassengerText(vehicleDetails.passenger || "4 Passenger")}
                           </span>
@@ -448,7 +448,7 @@ useEffect(() => {
                               <h5 className="fw-bold mb-0 text-end" style={{ minWidth: "80px" }}>
                                 ${(
                                   parseFloat(vehicleDetails.totalPrice.replace("$", "")) * 1.12 +
-                                  100 * 1.07
+                                  depositSubtotal
                                 ).toFixed(2)}
                               </h5>
                             </div>
