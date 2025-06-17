@@ -231,6 +231,7 @@ const BookingForm = () => {
     formDataToSubmit.append("bphone", formData.bphone);
     formDataToSubmit.append("bemail", formData.bemail);
     formDataToSubmit.append("bsize", formData.bsize);
+    formDataToSubmit.append('resevationId',id);
 
     // Format and append business address (Required)
     const { street, city, state, zipcode } = formData.baddress;
