@@ -181,6 +181,7 @@ const Reserve = ({ hideContent }) => {
             vehicleId,
             reserveAmount: calcPrice,
             vehicleAmount: baseRental,
+            reservationId,
           }),
         }
       );
