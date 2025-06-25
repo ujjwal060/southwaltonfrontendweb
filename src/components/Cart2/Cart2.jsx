@@ -4,16 +4,15 @@ import "./Cart2.scss";
 import Group3 from "./img/Group3.png";
 import Popup from "../Popup/Popup";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import { Tooltip } from "bootstrap"; // Tooltip from Bootstrap
 
 const Cart2 = () => {
   const [cardDetails, setCardDetails] = useState([]);
   const [filteredCards, setFilteredCards] = useState([]);
   const [error, setError] = useState("");
-  const [showAll, setShowAll] = useState(false);
   const [isPopupVisible, setPopupVisible] = useState(false);
   const [selectedCard, setSelectedCard] = useState(null);
-  const [reservationDate, setReservationDate] = useState(null);
-  const [isLoading, setIsLoading] = useState(true); // Added loading state
+  const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
 
@@ -21,15 +20,11 @@ const Cart2 = () => {
     try {
       const response = await axios.get(
         "http://18.209.91.97:8132/api/newVehicle/vehicleData",
-        {
-          params: { days, pickdate, dropdate },
-        }
+        { params: { days, pickdate, dropdate } }
       );
-      console.log("vehicles", response.data?.results);
       return response.data?.results || [];
     } catch (error) {
       setError("Error fetching vehicle details");
-      console.log("Error fetching details:", error);
       return [];
     }
   };
@@ -46,12 +41,16 @@ const Cart2 = () => {
     onChoose,
   }) => {
     const imageUrl = image || Group3;
+
     const formatPassengerText = (passenger) => {
       if (passenger === "fourPassenger") return "4 Passenger";
       if (passenger === "sixPassenger") return "6 Passenger";
       if (passenger === "eightPassenger") return "8 Passenger";
       return passenger;
     };
+
+    const isPriceAvailable = price !== null && price !== undefined && price !== "";
+
     return (
       <div className="col-lg-6 mb-4">
         <div className="card border-0 shadow h-100 hover-scale">
@@ -66,12 +65,9 @@ const Cart2 = () => {
             <div className="col-sm-6">
               <div className="card-content p-4">
                 <div className="manage">
-                <h4 className="model fw-bold mb-2">{vName}</h4>
-                <p className="passengers text-dark mb-2">
-                    Model:{" "}
-                    <span className="fw-bold">
-                    {model}
-                    </span>
+                  <h4 className="model fw-bold mb-2">{vName}</h4>
+                  <p className="passengers text-dark mb-2">
+                    Model: <span className="fw-bold">{model}</span>
                   </p>
                   <p className="passengers text-dark mb-2">
                     Capacity:{" "}
@@ -80,10 +76,13 @@ const Cart2 = () => {
                     </span>
                   </p>
                   <p className="price mb-2">
-                    Price: <span className="fw-bold">{price}</span>
+                    Price:{" "}
+                    <span className="fw-bold">
+                      {isPriceAvailable ? price : "Not available"}
+                    </span>
                   </p>
                   <p className="tag-number text-dark mb-2">
-                    Tag Number: <span className="fw-bold"> {tagNumber}</span>
+                    Tag Number: <span className="fw-bold">{tagNumber}</span>
                   </p>
                   <p
                     className={`availability mb-3 ${
@@ -95,9 +94,19 @@ const Cart2 = () => {
                     </span>
                   </p>
                 </div>
+
                 <button
                   onClick={() => onChoose(id)}
+                  disabled={!isPriceAvailable}
+                  data-bs-toggle={!isPriceAvailable ? "tooltip" : undefined}
+                  data-bs-title={
+                    !isPriceAvailable ? "Price not available for this vehicle" : ""
+                  }
                   className="choose-button w-100 fw-bold"
+                  style={{
+                    cursor: !isPriceAvailable ? "not-allowed" : "pointer",
+                    backgroundColor: !isPriceAvailable ? "#ccc" : undefined,
+                  }}
                 >
                   Choose this cart
                 </button>
@@ -151,7 +160,7 @@ const Cart2 = () => {
     if (reservationId) {
       const fetchReservationData = async () => {
         try {
-          setIsLoading(true); // Start loading
+          setIsLoading(true);
           const response = await axios.get(
             `http://18.209.91.97:5001/api/reserve/reservation/${reservationId}`
           );
@@ -160,10 +169,12 @@ const Cart2 = () => {
           if (reservationData?.pickdate && reservationData?.dropdate) {
             const pickupDate = new Date(reservationData.pickdate);
             const dropoffDate = new Date(reservationData.dropdate);
-            setReservationDate({ pickupDate, dropoffDate });
 
-            const timeDiff = dropoffDate.getTime() - pickupDate.getTime();
-            const days = Math.ceil(timeDiff / (1000 * 3600 * 24)) + 1;
+            const days =
+              Math.ceil(
+                (dropoffDate.getTime() - pickupDate.getTime()) /
+                  (1000 * 3600 * 24)
+              ) + 1;
 
             const fetchedData = await fetchVehicledata(
               days,
@@ -173,7 +184,6 @@ const Cart2 = () => {
 
             if (fetchedData.length > 0) {
               setCardDetails(fetchedData);
-
               const storedPassengerValue = searchParams.get("passenger");
               const filtered = fetchedData.filter(
                 (card) => card.passenger === storedPassengerValue
@@ -187,9 +197,8 @@ const Cart2 = () => {
           }
         } catch (err) {
           setError("Error fetching reservation data");
-          console.log("Error fetching reservation data:", err);
         } finally {
-          setIsLoading(false); // Stop loading whether successful or not
+          setIsLoading(false);
         }
       };
 
@@ -200,10 +209,15 @@ const Cart2 = () => {
     }
   }, []);
 
-  const initialCardCount = 5;
-  const handleToggle = () => {
-    setShowAll(!showAll);
-  };
+  // ✅ Initialize Bootstrap tooltips
+  useEffect(() => {
+    const tooltipTriggerList = Array.from(
+      document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    );
+    tooltipTriggerList.forEach((tooltipTriggerEl) => {
+      new Tooltip(tooltipTriggerEl);
+    });
+  }, [cardDetails]);
 
   const handleChoose = (id) => {
     localStorage.setItem("vehicleId", id);
@@ -229,7 +243,6 @@ const Cart2 = () => {
     }
   };
 
-  // Loader component
   const Loader = () => (
     <div className="text-center py-5">
       <div className="spinner-border text-primary" role="status">
@@ -257,10 +270,7 @@ const Cart2 = () => {
                 {filteredCards.length === 0 ? (
                   <h4 className="no-vehicle-text">No vehicle Available...</h4>
                 ) : (
-                  <CardList
-                    cardDetails={filteredCards.slice(0, initialCardCount)}
-                    onChoose={handleChoose}
-                  />
+                  <CardList cardDetails={filteredCards} onChoose={handleChoose} />
                 )}
               </div>
 
