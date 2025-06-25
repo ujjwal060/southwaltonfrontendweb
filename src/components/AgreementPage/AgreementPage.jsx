@@ -6,6 +6,8 @@ import { loadStripe } from "@stripe/stripe-js";
 import axios from "axios";
 import { PDFDocument, rgb } from "pdf-lib";
 import AgreementPDF from "./Agreement.pdf";
+import 'bootstrap-icons/font/bootstrap-icons.css'; // bootstrap icons
+import './AgreementPage.css'; // custom styles for modal
 
 const AgreementPage = () => {
   const sigCanvas = useRef({});
@@ -39,23 +41,21 @@ const AgreementPage = () => {
   const showAlert = (title, message, action = null) => {
     setModalTitle(title);
     setModalMessage(message);
-    setModalAction(() => action); // Store the action
+    setModalAction(() => action);
     setShowModal(true);
   };
 
   const handleSubmit = async () => {
     if (!signerName.trim()) {
-      showAlert("Missing Name", "Please enter your name before submitting.");
+      showAlert("Error", "Please enter your name before submitting.");
       return;
     }
 
-    setIsLoading(true); // Start loader
+    setIsLoading(true);
     const signatureData = sigCanvas.current.toDataURL("image/png");
 
     try {
-      const pdfBytes = await fetch(AgreementPDF).then((res) =>
-        res.arrayBuffer()
-      );
+      const pdfBytes = await fetch(AgreementPDF).then((res) => res.arrayBuffer());
       const pdfDoc = await PDFDocument.load(pdfBytes);
       const signatureImage = await pdfDoc.embedPng(signatureData);
       const pages = pdfDoc.getPages();
@@ -81,9 +81,7 @@ const AgreementPage = () => {
       });
 
       const modifiedPdfBytes = await pdfDoc.save();
-      const modifiedPdfBlob = new Blob([modifiedPdfBytes], {
-        type: "application/pdf",
-      });
+      const modifiedPdfBlob = new Blob([modifiedPdfBytes], { type: "application/pdf" });
 
       const formData = new FormData();
       formData.append("pdf", modifiedPdfBlob, "SignedAgreement.pdf");
@@ -95,11 +93,7 @@ const AgreementPage = () => {
       });
 
       if (response.ok) {
-        showAlert(
-          "Success",
-          "Signature saved successfully! Click OK to proceed to payment.",
-          handleProceedPayment
-        );
+        showAlert("Success", "Your Signature was saved successfully, Please click on Continue to Proceed to Paytment", handleProceedPayment);
       } else {
         const errorText = await response.text();
         showAlert("Error", "Failed to save signature: Due to some Internal Server Error");
@@ -108,15 +102,13 @@ const AgreementPage = () => {
       console.error("Signature save error:", error);
       showAlert("Error", "Failed to save signature.");
     } finally {
-      setIsLoading(false); // Stop loader
+      setIsLoading(false);
     }
   };
 
   const handleProceedPayment = async () => {
     try {
-      const stripe = await loadStripe(
-        "pk_test_51QV6moK0VXG1vNgVD9gZwP9UC2dR2ztmamIu1r8kMvNMWq5sy3TFwTdZXoGaAXCU4f23Ug7OOn81zPLcWWljboe0000j4sl0Qi"
-      );
+      const stripe = await loadStripe("pk_test_51QV6moK0VXG1vNgVD9gZwP9UC2dR2ztmamIu1r8kMvNMWq5sy3TFwTdZXoGaAXCU4f23Ug7OOn81zPLcWWljboe0000j4sl0Qi");
 
       const response = await axios.post(
         "http://18.209.91.97:5001/api/payment/create-payment-intent",
@@ -137,7 +129,7 @@ const AgreementPage = () => {
       const result = await stripe.redirectToCheckout({ sessionId });
 
       if (result.error) {
-        showAlert("Payment Failed", result.error.message);
+        showAlert("Error", result.error.message);
       } else {
         navigate("/payment-successfully");
       }
@@ -152,7 +144,6 @@ const AgreementPage = () => {
       <div className="row justify-content-center">
         <div className="col-md-12">
           <h3 className="text-center mb-4">Rental Agreement</h3>
-
           <iframe
             src={AgreementPDF}
             width="100%"
@@ -163,7 +154,6 @@ const AgreementPage = () => {
 
           <div className="mt-4 d-flex flex-column align-items-center">
             <h5>Please sign below to confirm your agreement:</h5>
-
             <SignatureCanvas
               ref={sigCanvas}
               penColor="black"
@@ -174,7 +164,6 @@ const AgreementPage = () => {
               }}
               onEnd={handleEnd}
             />
-
             <input
               type="text"
               value={signerName}
@@ -191,22 +180,11 @@ const AgreementPage = () => {
           </div>
 
           <div className="d-flex justify-content-center gap-3 mt-3">
-            <Button variant="secondary" onClick={handleClear}>
-              Clear
-            </Button>
-
-            <Button
-              variant="primary"
-              onClick={handleSubmit}
-              disabled={!isSigned || isLoading}
-            >
+            <Button variant="secondary" onClick={handleClear}>Clear</Button>
+            <Button variant="primary" onClick={handleSubmit} disabled={!isSigned || isLoading}>
               {isLoading ? (
                 <>
-                  <span
-                    className="spinner-border spinner-border-sm me-2"
-                    role="status"
-                    aria-hidden="true"
-                  ></span>
+                  <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
                   Saving...
                 </>
               ) : (
@@ -217,23 +195,28 @@ const AgreementPage = () => {
         </div>
       </div>
 
-      {/* ✅ Modal Alert */}
-      <Modal show={showModal} onHide={() => setShowModal(false)} centered>
-        <Modal.Header closeButton>
-          <Modal.Title>{modalTitle}</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>{modalMessage}</Modal.Body>
-        <Modal.Footer>
-          <Button
-            variant="primary"
+      {/* ✅ Custom Modal */}
+      <Modal show={showModal} onHide={() => setShowModal(false)} centered dialogClassName="custom-modal">
+        <div className={`top-section ${modalTitle === "Success" ? "success-top" : "error-top"}`}>
+          {modalTitle === "Success" ? (
+            <i className="bi bi-check-circle-fill success-icon"></i>
+          ) : (
+            <i className="bi bi-exclamation-triangle-fill error-icon"></i>
+          )}
+        </div>
+        <div className="modal-body">
+          <h4>{modalTitle}!</h4>
+          <p>{modalMessage}</p>
+          <button
+            className={`modal-button ${modalTitle === "Success" ? "success-btn" : "error-btn"}`}
             onClick={() => {
               setShowModal(false);
               if (modalAction) modalAction();
             }}
           >
-            OK
-          </Button>
-        </Modal.Footer>
+            {modalTitle === "Success" ? "Continue" : "Try again"}
+          </button>
+        </div>
       </Modal>
     </div>
   );
