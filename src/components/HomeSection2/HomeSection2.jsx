@@ -41,7 +41,7 @@ const HomeSection4 = () => {
             <img src={Cart3} alt="Area 1" />
             <button
               className="book-button"
-              onClick={() => handleClick("fourPassenger", Cart3)}
+              onClick={() => handleClick("fourPassengerGas", Cart3)}
             >
               Book Now <FaArrowRight style={{ marginLeft: "4px" }} />
             </button>
@@ -54,7 +54,7 @@ const HomeSection4 = () => {
             <img src={Cart4} alt="Area 1" />
             <button
               className="book-button"
-              onClick={() => handleClick("sixPassenger", Cart4)}
+              onClick={() => handleClick("sixPassengerGas", Cart4)}
             >
               Book Now <FaArrowRight style={{ marginLeft: "4px" }} />
             </button>
