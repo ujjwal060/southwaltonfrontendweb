@@ -448,7 +448,7 @@ const Reserve = ({ hideContent }) => {
                               <h6 className="mb-0 fw-bold me-auto">Total Amount (USD)</h6>
                               <h5 className="fw-bold mb-0 text-end" style={{ minWidth: "80px" }}>
                                 ${(
-                                  parseFloat(vehicleDetails.totalPrice.replace("$", "")) * 1.12
+                                  parseFloat(vehicleDetails.totalPrice.replace("$", "")) * 1.12 + depositSubtotal
                                 ).toFixed(2)}
                               </h5>
                             </div>
