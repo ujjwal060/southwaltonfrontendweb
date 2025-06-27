@@ -26,8 +26,13 @@
   background-color: #e74c3c;
 }
 
+.warning-top {
+  background-color: #f1c40f;
+}
+
 .success-icon,
-.error-icon {
+.error-icon,
+.warning-icon {
   font-size: 50px;
   color: white;
 }
@@ -60,4 +65,9 @@
 
 .error-btn {
   background-color: #e74c3c;
+}
+
+.warning-btn {
+  background-color: #f1c40f;
+  color: #fff;
 }

@@ -47,7 +47,7 @@ const AgreementPage = () => {
 
   const handleSubmit = async () => {
     if (!signerName.trim()) {
-      showAlert("Error", "Please enter your name before submitting.");
+      showAlert("Warning", "Please enter your name before submitting.");
       return;
     }
 
@@ -197,9 +197,11 @@ const AgreementPage = () => {
 
       {/* ✅ Custom Modal */}
       <Modal show={showModal} onHide={() => setShowModal(false)} centered dialogClassName="custom-modal">
-        <div className={`top-section ${modalTitle === "Success" ? "success-top" : "error-top"}`}>
+        <div className={`top-section ${modalTitle === "Success" ? "success-top" : modalTitle === "Warning" ? "warning-top" : "error-top"}`}>
           {modalTitle === "Success" ? (
             <i className="bi bi-check-circle-fill success-icon"></i>
+          ) : modalTitle === "Warning" ? (
+            <i className="bi bi-exclamation-circle-fill warning-icon"></i>
           ) : (
             <i className="bi bi-exclamation-triangle-fill error-icon"></i>
           )}
@@ -208,13 +210,13 @@ const AgreementPage = () => {
           <h4>{modalTitle}!</h4>
           <p>{modalMessage}</p>
           <button
-            className={`modal-button ${modalTitle === "Success" ? "success-btn" : "error-btn"}`}
+            className={`modal-button ${modalTitle === "Success" ? "success-btn" : modalTitle === "Warning" ? "warning-btn" : "error-btn"}`}
             onClick={() => {
               setShowModal(false);
               if (modalAction) modalAction();
             }}
           >
-            {modalTitle === "Success" ? "Continue" : "Try again"}
+            {modalTitle === "Success" ? "Continue" : modalTitle === "Warning" ? "OK" : "Try again"}
           </button>
         </div>
       </Modal>
