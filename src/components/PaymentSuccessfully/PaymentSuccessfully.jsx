@@ -25,7 +25,7 @@ const InvoiceDetails = () => {
       const fetchPaymentDetails = async () => {
         try {
           const response = await axios.get(
-            `http://18.209.91.97:5001/api/pay/complete-payment?session_id=${sessionId}`
+            `http://52.20.55.193:5001/api/pay/complete-payment?session_id=${sessionId}`
           );
           if (response.status === 200) {
             setOrderHistory(response.data.data);
@@ -55,7 +55,7 @@ const InvoiceDetails = () => {
       }
       try {
         const response = await axios.get(
-          `http://18.209.91.97:5001/api/user/${userId}`
+          `http://52.20.55.193:5001/api/user/${userId}`
         );
         setEmail(response.data.data.email);
         setPhone(response.data.data.phoneNumber);
