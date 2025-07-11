@@ -87,7 +87,7 @@ const AgreementPage = () => {
       formData.append("pdf", modifiedPdfBlob, "SignedAgreement.pdf");
       formData.append("userId", userId);
 
-      const response = await fetch("http://18.209.91.97:5001/api/sign/send", {
+      const response = await fetch("http://52.20.55.193:5001/api/sign/send", {
         method: "POST",
         body: formData,
       });
@@ -111,7 +111,7 @@ const AgreementPage = () => {
       const stripe = await loadStripe("pk_test_51QV6moK0VXG1vNgVD9gZwP9UC2dR2ztmamIu1r8kMvNMWq5sy3TFwTdZXoGaAXCU4f23Ug7OOn81zPLcWWljboe0000j4sl0Qi");
 
       const response = await axios.post(
-        "http://18.209.91.97:5001/api/payment/create-payment-intent",
+        "http://52.20.55.193:5001/api/payment/create-payment-intent",
         {
           userId,
           bookingId,

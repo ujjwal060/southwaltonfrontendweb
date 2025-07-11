@@ -58,7 +58,7 @@ function SignUp() {
     setLoading(true);
 
     try {
-      const response = await axios.post('http://18.209.91.97:5001/api/auth/signUp', formData);
+      const response = await axios.post('http://52.20.55.193:5001/api/auth/signUp', formData);
       console.log(response.data);
       toast.success("User created successfully!");
       setTimeout(() => {

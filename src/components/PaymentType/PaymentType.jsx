@@ -14,7 +14,7 @@ const PaymentForm = () => {
     const getAmount = async () => {
         try {
             const vehicleId = localStorage.getItem('vehicleId');
-            const response = await axios.get(`http://18.209.91.97:5001/api/vehicle/vehicles/${vehicleId}`);
+            const response = await axios.get(`http://52.20.55.193:5001/api/vehicle/vehicles/${vehicleId}`);
             const data = response.data;
             console.log('response', data);
             setAmount({ price: data.vprice });
