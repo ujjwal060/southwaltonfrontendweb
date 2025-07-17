@@ -12,7 +12,7 @@ const OAuthCallback = () => {
                     const response = await axios.post('https://api.freshbooks.com/api/auth/oauth/token', {
                         grant_type: 'authorization_code',
                         code: code,
-                        redirect_uri: 'http://52.20.55.193:5173/oauth/callback',
+                        redirect_uri: 'http://98.82.228.18:5173/oauth/callback',
                         client_id: '15386d9aa23a6d5ae85d4ca0fbc529bded76fb72159a028cc0b87a41832c10df',
                         client_secret: '365a70dbbb32c9ef5a9677412e753861766edacab164495cbdc2233b6d4f72fb'
                     });

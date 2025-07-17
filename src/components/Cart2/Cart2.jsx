@@ -19,7 +19,7 @@ const Cart2 = () => {
   const fetchVehicledata = async (days, pickdate, dropdate) => {
     try {
       const response = await axios.get(
-        "http://52.20.55.193:8132/api/newVehicle/vehicleData",
+        "http://98.82.228.18:8132/api/newVehicle/vehicleData",
         { params: { days, pickdate, dropdate } }
       );
       return response.data?.results || [];
@@ -162,7 +162,7 @@ const Cart2 = () => {
         try {
           setIsLoading(true);
           const response = await axios.get(
-            `http://52.20.55.193:5001/api/reserve/reservation/${reservationId}`
+            `http://98.82.228.18:5001/api/reserve/reservation/${reservationId}`
           );
           const reservationData = response.data;
 

@@ -25,7 +25,7 @@ const Booking = () => {
 
     try {
       const response = await axios.get(
-        `http://52.20.55.193:5001/api/book/history/${user}?page=${page}&limit=${limit}&search=`
+        `http://98.82.228.18:5001/api/book/history/${user}?page=${page}&limit=${limit}&search=`
       );
       setRecentBookings(response.data.data.data);
       setTotalPages(response.data.data.totalPages);
