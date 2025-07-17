@@ -9,7 +9,7 @@ const CombinedComponent = () => {
 
   const fetchModels = async () => {
     try {
-      const response = await axios.get(`http://52.20.55.193:5001/api/vehicle/`);
+      const response = await axios.get(`http://98.82.228.18:5001/api/vehicle/`);
       console.log('response', response.data);
       setModels(response.data);
     } catch (error) {
@@ -24,7 +24,7 @@ const CombinedComponent = () => {
   const removecart = async (id, status) => {
     try {
       console.log(id, status);
-      await axios.put(`http://52.20.55.193:5001/api/vehicle/removecart/${id}`, { status });
+      await axios.put(`http://98.82.228.18:5001/api/vehicle/removecart/${id}`, { status });
       fetchModels();
     } catch (error) {
       console.log('Error changing Status', error);

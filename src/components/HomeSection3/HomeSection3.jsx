@@ -91,7 +91,7 @@ const CartDetails = () => {
 
     try {
       const response = await fetch(
-        "http://52.20.55.193:5001/api/reserve/reservation",
+        "http://98.82.228.18:5001/api/reserve/reservation",
         {
           method: "POST",
           headers: {

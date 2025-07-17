@@ -79,7 +79,7 @@ const BookingForm = () => {
     // Fetch vehicle size
     if (vehicleId) {
       axios
-        .get(`http://52.20.55.193:8132/api/newVehicle/vehicleData/${vehicleId}`)
+        .get(`http://98.82.228.18:8132/api/newVehicle/vehicleData/${vehicleId}`)
         .then((response) => {
           const size = response.data.passenger;
           const name = response.data.vname;
@@ -274,7 +274,7 @@ const BookingForm = () => {
 
     try {
       const response = await axios.post(
-        "http://52.20.55.193:5001/api/book/create",
+        "http://98.82.228.18:5001/api/book/create",
         formDataToSubmit,
         {
           headers: { "Content-Type": "multipart/form-data" },
