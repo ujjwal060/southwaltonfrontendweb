@@ -55,7 +55,7 @@ const Reserve = ({ hideContent }) => {
     if (reservationId) {
       // console.log("Fetching data for reservation ID:", reservationId); // Debugging log
       fetch(
-        `http://98.82.228.18:5001/api/reserve/reservation/${reservationId}`
+        `http://98.85.246.54:5001/api/reserve/reservation/${reservationId}`
       )
         .then((response) => response.json())
         .then((data) => setReservationDates(data))
@@ -84,7 +84,7 @@ const Reserve = ({ hideContent }) => {
       const dropdate = reservationDates.dropdate;
 
       fetch(
-        `http://98.82.228.18:8132/api/newVehicle/getVehicleWithPriceById/${vehicleId}?pickdate=${pickdate}&dropdate=${dropdate}`
+        `http://98.85.246.54:8132/api/newVehicle/getVehicleWithPriceById/${vehicleId}?pickdate=${pickdate}&dropdate=${dropdate}`
       )
         .then((response) => response.json())
         .then((responseData) => {
@@ -171,7 +171,7 @@ const Reserve = ({ hideContent }) => {
 
     try {
       const response = await fetch(
-        `http://98.82.228.18:5001/api/reserve/reservation/${reservationId}`,
+        `http://98.85.246.54:5001/api/reserve/reservation/${reservationId}`,
         {
           method: "PUT",
           headers: {

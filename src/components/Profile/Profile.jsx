@@ -33,7 +33,7 @@ const ProfileUpdate = () => {
       if (user) {
         try {
           const response = await axios.get(
-            `http://98.82.228.18:5001/api/user/${user}`
+            `http://98.85.246.54:5001/api/user/${user}`
           );
           const data = response.data.data;
 
@@ -109,7 +109,7 @@ const ProfileUpdate = () => {
 
     try {
       const response = await axios.put(
-        `http://98.82.228.18:5001/api/user/${user}`,
+        `http://98.85.246.54:5001/api/user/${user}`,
         formData,
         {
           headers: {
@@ -131,7 +131,7 @@ const ProfileUpdate = () => {
     try {
       // Fetch the current password from the API
       const response = await axios.get(
-        `http://98.82.228.18:5001/api/user/${user}`
+        `http://98.85.246.54:5001/api/user/${user}`
       );
       const storedPassword = response.data.data.password;
       console.log(storedPassword);
@@ -147,7 +147,7 @@ const ProfileUpdate = () => {
       }
 
       // Update the password in the backend
-      await axios.put(`http://98.82.228.18:5001/api/user/user/${user}/`, {
+      await axios.put(`http://98.85.246.54:5001/api/user/user/${user}/`, {
         newPassword: newPassword,
       });
 
