@@ -26,7 +26,7 @@ const Change = () => {
     }
 
     try {
-      const response = await axios.post('http://98.82.228.18:5001/api/auth/resetPassword', {
+      const response = await axios.post('http://98.85.246.54:5001/api/auth/resetPassword', {
       email:  email,
         password,
       });
