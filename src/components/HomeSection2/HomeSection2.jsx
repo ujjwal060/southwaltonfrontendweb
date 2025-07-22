@@ -17,7 +17,7 @@ const HomeSection4 = () => {
   return (
     <div className="home-section4">
       <div className="service-areas1">
-        <h2>Our Street Legal Golf Carts</h2>
+        <h2>Our <span style={{ fontWeight: 600 }}>Street Legal Golf Carts</span></h2>
         <div className="areas">
           <div className="area">
             <img src={Cart1} alt="Area 1" />
@@ -41,7 +41,7 @@ const HomeSection4 = () => {
             <img src={Cart3} alt="Area 1" />
             <button
               className="book-button"
-              onClick={() => handleClick("fourPassenger", Cart3)}
+              onClick={() => handleClick("fourPassengerGas", Cart3)}
             >
               Book Now <FaArrowRight style={{ marginLeft: "4px" }} />
             </button>
@@ -54,7 +54,7 @@ const HomeSection4 = () => {
             <img src={Cart4} alt="Area 1" />
             <button
               className="book-button"
-              onClick={() => handleClick("sixPassenger", Cart4)}
+              onClick={() => handleClick("sixPassengerGas", Cart4)}
             >
               Book Now <FaArrowRight style={{ marginLeft: "4px" }} />
             </button>

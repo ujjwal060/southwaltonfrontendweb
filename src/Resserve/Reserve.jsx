@@ -11,12 +11,14 @@ import {
   DollarSign,
   ShieldAlert,
 } from "lucide-react";
+import moment from "moment"; // Add this import
 
 const Reserve = ({ hideContent }) => {
   const [vehicleDetails, setVehicleDetails] = useState(null);
   const [reservationDates, setReservationDates] = useState(null);
   const canvasRef = useRef(null);
   const [isChecked, setIsChecked] = useState(false);
+  const [showTax, setShowTax] = useState(false); // Add this state
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -27,6 +29,20 @@ const Reserve = ({ hideContent }) => {
   const [calcPrice, setCalcPrice] = useState("");
   const [baseRental, setBaseRental] = useState(null);
   // useEffect to set reservationId from localStorage
+  // Add this useEffect to handle the tax logic
+  useEffect(() => {
+    if (reservationDates?.pickdate) {
+      const today = moment().startOf("day");
+      const pickDate = moment(reservationDates.pickdate).startOf("day");
+      setShowTax(pickDate.isSame(today));
+    }
+  }, [reservationDates]);
+
+  // Calculate deposit and tax amounts
+  const deposit = 100;
+  const depositTax = showTax ? deposit * 0.07 : 0;
+  const depositSubtotal = deposit + depositTax;
+
   useEffect(() => {
     const storedReservationId = localStorage.getItem("reservationId"); // Retrieve the value
     if (storedReservationId) {
@@ -39,7 +55,7 @@ const Reserve = ({ hideContent }) => {
     if (reservationId) {
       // console.log("Fetching data for reservation ID:", reservationId); // Debugging log
       fetch(
-        `http://18.209.91.97:5001/api/reserve/reservation/${reservationId}`
+        `http://98.85.246.54:5001/api/reserve/reservation/${reservationId}`
       )
         .then((response) => response.json())
         .then((data) => setReservationDates(data))
@@ -68,7 +84,7 @@ const Reserve = ({ hideContent }) => {
       const dropdate = reservationDates.dropdate;
 
       fetch(
-        `http://18.209.91.97:8132/api/newVehicle/getVehicleWithPriceById/${vehicleId}?pickdate=${pickdate}&dropdate=${dropdate}`
+        `http://98.85.246.54:8132/api/newVehicle/getVehicleWithPriceById/${vehicleId}?pickdate=${pickdate}&dropdate=${dropdate}`
       )
         .then((response) => response.json())
         .then((responseData) => {
@@ -92,10 +108,15 @@ const Reserve = ({ hideContent }) => {
       const base = parseFloat(
         vehicleDetails.totalPrice.replace(/[^0-9.]/g, "")
       );
-      setBaseRental(base); // <-- Set baseRental state
+      setBaseRental(base);
 
       const rentalWithFees = base * 1.12;
-      const reservationPrice = 100 * 1.12;
+
+      // Calculate reservation price based on whether tax should be shown
+      const reservationDeposit = 100;
+      const reservationTax = showTax ? reservationDeposit * 0.07 : 0;
+      const reservationPrice = reservationDeposit + reservationTax;
+
       const totalAmount = rentalWithFees + reservationPrice;
 
       const formattedTotal = totalAmount.toFixed(2);
@@ -103,7 +124,7 @@ const Reserve = ({ hideContent }) => {
 
       localStorage.setItem("totalAmount", formattedTotal);
     }
-  }, [vehicleDetails, reservationDates]);
+  }, [vehicleDetails, reservationDates, showTax]); // Added showTax to dependencies
 
   // Update canvas with vehicle image
   useEffect(() => {
@@ -150,7 +171,7 @@ const Reserve = ({ hideContent }) => {
 
     try {
       const response = await fetch(
-        `http://18.209.91.97:5001/api/reserve/reservation/${reservationId}`,
+        `http://98.85.246.54:5001/api/reserve/reservation/${reservationId}`,
         {
           method: "PUT",
           headers: {
@@ -160,6 +181,7 @@ const Reserve = ({ hideContent }) => {
             vehicleId,
             reserveAmount: calcPrice,
             vehicleAmount: baseRental,
+            reservationId,
           }),
         }
       );
@@ -334,87 +356,104 @@ const Reserve = ({ hideContent }) => {
                 <div className="vehicle-details rounded p-4 pt-0">
                   {vehicleDetails && (
                     <>
-                      <div className="d-flex justify-content-between align-items-center mb-3">
-                        <h6 className="vehicle-name mb-0 d-flex align-items-center">
-                          {vehicleDetails.vname || "Vehicle Name"}
+                      <div className="d-flex justify-content-between align-items-center mb-3 bg-light p-3">
+                        <h6 className="vehicle-name mb-0 d-flex align-items-center"><span>Vehicle Name: {vehicleDetails.vname || "Vehicle Name"}</span>
+
                           <span className="badge bg-secondary ms-2">
-                            {formatPassengerText(
-                              vehicleDetails.passenger || "4 Passenger"
-                            )}
+                            {formatPassengerText(vehicleDetails.passenger || "4 Passenger")}
                           </span>
                         </h6>
-
-                        <h5 className="mb-0 d-flex align-items-center">
-                          <DollarSign size={18} className="me-2" />
+                        <h5 className="mb-0 d-flex align-items-center fw-bold">
+                          <DollarSign size={18} className="me-1" />
                           Pricing Details
                         </h5>
                       </div>
 
                       <div className="d-flex flex-column gap-3">
-                        <div className="d-flex justify-content-between align-items-start flex-column p-3 bg-light rounded">
-                          <div className="d-flex justify-content-between align-items-center w-100 mb-3">
-                            <div>
-                              <h6 className="mb-1 fw-bold">Vehicle Rental</h6>
-                              <small>
-                                Vehicle Price: {vehicleDetails.totalPrice},
-                                Florida Tax: 7%, Online Convenience Fee: 5%
-                              </small>
+                        {/* Vehicle Rental Breakdown */}
+                        <div className="row">
+                          <div className="col-md-6">
+                            <div className="p-3 bg-light rounded h-100">
+                              <h5 className="fw-bold mb-3 text-end">Vehicle Rental</h5>
+                              <div className="d-flex flex-column">
+                                <div className="d-flex justify-content-end mb-2">
+                                  <span className="fw-bold">Vehicle Base Price:</span>
+                                  <span className="text-end fw-bold" style={{ minWidth: "80px" }}>
+                                    {vehicleDetails.totalPrice}
+                                  </span>
+                                </div>
+                                <div className="d-flex justify-content-end mb-2">
+                                  <span className="fw-bold">Florida Tax (7%):</span>
+                                  <span className="text-end fw-bold" style={{ minWidth: "80px" }}>
+                                    ${(parseFloat(vehicleDetails.totalPrice.replace("$", "")) * 0.07).toFixed(2)}
+                                  </span>
+                                </div>
+                                <div className="d-flex justify-content-end mb-3">
+                                  <span className="fw-bold">Convenience Fee (5%):</span>
+                                  <span className="text-end fw-bold" style={{ minWidth: "80px" }}>
+                                    ${(parseFloat(vehicleDetails.totalPrice.replace("$", "")) * 0.05).toFixed(2)}
+                                  </span>
+                                </div>
+                                <div className="d-flex justify-content-end border-top pt-2">
+                                  <span className="fw-bold">Subtotal:</span>
+                                  <span className="fw-bold text-success text-end" style={{ minWidth: "80px" }}>
+                                    ${(parseFloat(vehicleDetails.totalPrice.replace("$", "")) * 1.12).toFixed(2)}
+                                  </span>
+                                </div>
+
+                              </div>
                             </div>
-                            <h6 className="fw-bold text-success">
-                              $
-                              {(
-                                parseFloat(
-                                  vehicleDetails.totalPrice.replace("$", "")
-                                ) * 1.12
-                              ).toFixed(2)}
-                            </h6>
+                          </div>
+                          <div className="col-md-6">
+                            <div className="p-3 bg-light rounded h-100">
+                              <h5 className="fw-bold mb-3 text-end">Reservation Deposit</h5>
+                              <div className="d-flex flex-column">
+                                <div className="d-flex justify-content-end mb-2">
+                                  <span className="fw-bold">Deposit Amount:</span>
+                                  <span className="text-end fw-bold" style={{ minWidth: "80px" }}>
+                                    ${deposit.toFixed(2)}
+                                  </span>
+                                </div>
+
+                                {showTax && (
+                                  <div className="d-flex justify-content-end mb-3">
+                                    <span className="fw-bold">Florida Tax (7%):</span>
+                                    <span className="text-end fw-bold" style={{ minWidth: "80px" }}>
+                                      ${depositTax.toFixed(2)}
+                                    </span>
+                                  </div>
+                                )}
+
+                                <div className="d-flex justify-content-end border-top pt-2">
+                                  <span className="fw-bold">Subtotal:</span>
+                                  <span className="fw-bold text-success text-end" style={{ minWidth: "80px" }}>
+                                    ${depositSubtotal.toFixed(2)}
+                                  </span>
+                                </div>
+                              </div>
+                              <small className="text-muted d-block text-end mt-1">(Non-Refundable)</small>
+                            </div>
                           </div>
 
-                          <div className="d-flex justify-content-between align-items-center w-100">
-                            <div>
-                              <h6 className="mb-0 fw-bold">
-                                Reservation Price
-                              </h6>
-                              <small>
-                                Reservation Amount:$100, Florida Tax: 7%, Online
-                                Convenience Fee: 5%
-                              </small>
-                            </div>
-                            <h6 className="fw-bold text-primary">
-                              ${(100 * 1.12).toFixed(2)}
-                            </h6>
-                          </div>
                         </div>
 
-                        <div className="d-flex justify-content-between align-items-center p-3 bg-light rounded">
-                          <div>
-                            <h6 className="mb-1 fw-bold">
-                              Damage Deposit (Refundable)
-                            </h6>
-                            <small>
-                              Damage Amount: $250, Florida Tax: 7%, Online
-                              Convenience Fee: 5%
-                            </small>
-                          </div>
-                          <h6 className="fw-bold text-danger">
-                            ${(250 * 1.12).toFixed(2)}
-                          </h6>
-                        </div>
 
-                        <div className="d-flex justify-content-between align-items-center p-3 bg-dark text-white rounded">
-                          <h6 className="mb-0 fw-bold">Total Amount (USD)</h6>
-                          <h6 className="fw-bold">
-                            {/* Calculate total amount */}$
-                            {vehicleDetails?.totalPrice &&
-                              (
-                                parseFloat(
-                                  vehicleDetails?.totalPrice.replace("$", "")
-                                ) *
-                                  1.12 +
-                                100 * 1.12 +
-                                250 * 1.12
-                              ).toFixed(2)}
-                          </h6>
+                        {/* Reservation Deposit Breakdown */}
+
+
+                        {/* Total Amount */}
+                        <div className="p-3 bg-dark text-white rounded">
+                          <div className="d-flex flex-column">
+                            <div className="d-flex justify-content-end">
+                              <h6 className="mb-0 fw-bold me-auto">Total Amount (USD)</h6>
+                              <h5 className="fw-bold mb-0 text-end" style={{ minWidth: "80px" }}>
+                                ${(
+                                  parseFloat(vehicleDetails.totalPrice.replace("$", "")) * 1.12 + depositSubtotal
+                                ).toFixed(2)}
+                              </h5>
+                            </div>
+                            <small className="text-white text-end">Including all taxes and fees</small>
+                          </div>
                         </div>
                       </div>
 
@@ -432,12 +471,8 @@ const Reserve = ({ hideContent }) => {
                             className="form-check-label text-danger d-flex align-items-center"
                             htmlFor="termsCheckbox"
                           >
-                            <ShieldAlert
-                              size={16}
-                              className="me-1 text-danger"
-                            />
-                            I agree that $100 is non-refundable and wish to
-                            proceed.
+                            <ShieldAlert size={16} className="me-1 text-danger" />
+                            I agree that $100 is non-refundable and wish to proceed.
                           </label>
                         </div>
 
@@ -450,8 +485,7 @@ const Reserve = ({ hideContent }) => {
                             minWidth: "200px",
                           }}
                         >
-                          <CheckCircle size={18} className="me-2" /> Request
-                          Booking
+                          <CheckCircle size={18} className="me-2" /> Request Booking
                         </button>
                       </div>
                     </>
@@ -461,7 +495,7 @@ const Reserve = ({ hideContent }) => {
             </div>
           </div>
         </div>
-      </section>
+      </section >
     </>
   );
 };

@@ -132,7 +132,7 @@ const AdminAgreement = () => {
         formData.append('userId', userId);
 
         // Make the API request to upload the image
-        const uploadResponse = await axios.post('http://18.209.91.97:5001/api/sign/save', formData, {
+        const uploadResponse = await axios.post('http://98.85.246.54:5001/api/sign/save', formData, {
           headers: {
             'Content-Type': 'multipart/form-data',
           },
@@ -149,13 +149,13 @@ const AdminAgreement = () => {
         }).showToast(); // Notify user on success
 
         // After successful image upload, generate the PDF
-        const pdfResponse = await axios.post('http://18.209.91.97:5001/generate-pdf', { userId });
+        const pdfResponse = await axios.post('http://98.85.246.54:5001/generate-pdf', { userId });
 
         console.log('PDF generated successfully:', pdfResponse.data);
         const { pdfUrl } = pdfResponse.data;  // Extract the PDF URL from the response
 
         // Make a PUT request to update the PDF URL in the database
-        const updatePdfResponse = await axios.put('http://18.209.91.97:5001/api/sign/update-pdf', {
+        const updatePdfResponse = await axios.put('http://98.85.246.54:5001/api/sign/update-pdf', {
           userId,
           pdf: pdfUrl,  // Send the PDF URL along with the userId
         });

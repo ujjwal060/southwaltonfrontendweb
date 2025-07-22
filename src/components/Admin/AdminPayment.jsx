@@ -49,7 +49,7 @@ const CheckoutForm = () => {
   ) => {
     try {
       const response = await axios.post(
-        "http://18.209.91.97:5001/api/pay/register",
+        "http://98.85.246.54:5001/api/pay/register",
         {
           transactionId,
           email,
@@ -83,7 +83,7 @@ const CheckoutForm = () => {
     try {
       // Create payment intent
       const { data } = await axios.post(
-        "http://18.209.91.97:5001/api/payment/create-payment-intent",
+        "http://98.85.246.54:5001/api/payment/create-payment-intent",
         {
           amountInDollars: amount,
         }
@@ -112,7 +112,7 @@ const CheckoutForm = () => {
         // Step 4: Call Send-Invoice API
         try {
           const invoiceResponse = await axios.post(
-            `http://18.209.91.97:5001/api/pay/send-invoice/${paymentId}`
+            `http://98.85.246.54:5001/api/pay/send-invoice/${paymentId}`
           );
 
           if (invoiceResponse.data.success) {

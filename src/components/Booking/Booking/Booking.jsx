@@ -5,19 +5,27 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Link } from "react-router-dom";
 import { FaUser } from "react-icons/fa";
 
-
 const Booking = () => {
   const [recentBookings, setRecentBookings] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const limit = 3; 
 
   const fetchBookings = async (page) => {
     setLoading(true);
+    const user = localStorage.getItem("user");
+
+    if (!user) {
+      setError("User not logged in.");
+      setLoading(false);
+      return;
+    }
+
     try {
       const response = await axios.get(
-        `http://18.209.91.97:5001/api/book/history/676555d04dd678edd0ab3c80?page=${page}&limit=2&search=`
+        `http://98.85.246.54:5001/api/book/history/${user}?page=${page}&limit=${limit}&search=`
       );
       setRecentBookings(response.data.data.data);
       setTotalPages(response.data.data.totalPages);
@@ -54,8 +62,6 @@ const Booking = () => {
 
       {/* Booking Section */}
       <div className="container mt-4">
-        {/* <h2 className="text-center mb-4 text-primary">🚗 Recent Bookings</h2> */}
-
         {loading ? (
           <p className="text-center">Loading...</p>
         ) : error ? (
@@ -68,35 +74,33 @@ const Booking = () => {
               {recentBookings.map((booking, index) => (
                 <div className="col-lg-4 col-md-12 mb-4" key={index}>
                   <div className="card shadow-lg border-0 bg-light rounded-lg overflow-hidden h-100">
-                    {/* Card Header with Gradient */}
                     <div className="card-header bg-dark text-center p-2">
-                      <h6 className="text-center text-white mb-0">
-                         {booking.bookingDetails.bname || "N/A"}
+                      <h6 className="text-white mb-0">
+                        {booking.bookingDetails?.bname || "N/A"}
                       </h6>
                     </div>
 
-                    {/* Card Body */}
                     <div className="card-body d-flex flex-column">
                       <div className="text-center">
-                        <img
-                          src={
-                            booking.reservationDetails.vehicleDetails
-                              .image[0] || "https://via.placeholder.com/150"
-                          }
-                          className="img-fluid rounded shadow-sm"
-                          style={{width:"100%", height:"100%", maxHeight: "150px", objectFit: "" }}
-                          onError={(e) =>
-                            (e.target.src = "https://via.placeholder.com/150")
-                          }
-                        />
+                        {booking.reservationDetails.vehicleDetails?.image && (
+                          <img
+                            src={booking.reservationDetails.vehicleDetails.image}
+                            className="img-fluid rounded shadow-sm"
+                            style={{
+                              background: "#fff",
+                              width: "100%",
+                              height: "100%",
+                              maxHeight: "180px",
+                            }}
+                            alt="Vehicle"
+                          />
+                        )}
                       </div>
 
-                      {/* Booking Details */}
                       <div className="mt-3">
                         <p className="card-text">
                           <strong>🚘 Cart Name:</strong>{" "}
-                          {booking.reservationDetails.vehicleDetails.vname ||
-                            "N/A"}
+                          {booking.reservationDetails.vehicleDetails?.vname || "N/A"}
                         </p>
                         <p className="card-text">
                           <strong>📍 Pickup:</strong>{" "}
@@ -108,18 +112,11 @@ const Booking = () => {
                         </p>
                         <p className="card-text">
                           <strong>📅 Booking Date:</strong>{" "}
-                          {new Date(
-                            booking.reservationDetails.pickdate
-                          ).toLocaleDateString()}{" "}
-                          -{" "}
-                          {new Date(
-                            booking.reservationDetails.dropdate
-                          ).toLocaleDateString()}
+                          {new Date(booking.reservationDetails.pickdate).toLocaleDateString()} -{" "}
+                          {new Date(booking.reservationDetails.dropdate).toLocaleDateString()}
                         </p>
-
                         <p className="text-success mb-0">
-                          <strong>💰 Reservation Price: </strong>$
-                          {booking.amount || "N/A"}
+                          <strong>💰 Booking Amount: </strong>${booking.amount || "N/A"}
                         </p>
                       </div>
                     </div>
@@ -130,7 +127,7 @@ const Booking = () => {
 
             {/* Pagination Controls */}
             {totalPages > 1 && (
-              <div className="d-flex justify-content-center">
+              <div className="d-flex justify-content-center mt-3">
                 <button
                   className="btn btn-primary me-2"
                   onClick={handlePrevious}
