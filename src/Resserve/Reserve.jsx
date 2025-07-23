@@ -18,7 +18,7 @@ const Reserve = ({ hideContent }) => {
   const [reservationDates, setReservationDates] = useState(null);
   const canvasRef = useRef(null);
   const [isChecked, setIsChecked] = useState(false);
-  const [showTax, setShowTax] = useState(false); // Add this state
+  const [showTax, setShowTax] = useState(false);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -117,8 +117,8 @@ const Reserve = ({ hideContent }) => {
       const reservationTax = showTax ? reservationDeposit * 0.07 : 0;
       const reservationPrice = reservationDeposit + reservationTax;
 
-      const totalAmount = rentalWithFees + reservationPrice;
-
+      // const totalAmount = rentalWithFees + reservationPrice;
+      const totalAmount = rentalWithFees;
       const formattedTotal = totalAmount.toFixed(2);
       setCalcPrice(formattedTotal);
 
@@ -415,19 +415,20 @@ const Reserve = ({ hideContent }) => {
                                   </span>
                                 </div>
 
-                                {showTax && (
+                                {/* {showTax && (
                                   <div className="d-flex justify-content-end mb-3">
                                     <span className="fw-bold">Florida Tax (7%):</span>
                                     <span className="text-end fw-bold" style={{ minWidth: "80px" }}>
                                       ${depositTax.toFixed(2)}
                                     </span>
                                   </div>
-                                )}
+                                )} */}
 
                                 <div className="d-flex justify-content-end border-top pt-2">
                                   <span className="fw-bold">Subtotal:</span>
                                   <span className="fw-bold text-success text-end" style={{ minWidth: "80px" }}>
-                                    ${depositSubtotal.toFixed(2)}
+                                    {/* ${depositSubtotal.toFixed(2)} */}
+                                    ${deposit.toFixed(2)}
                                   </span>
                                 </div>
                               </div>
@@ -448,7 +449,7 @@ const Reserve = ({ hideContent }) => {
                               <h6 className="mb-0 fw-bold me-auto">Total Amount (USD)</h6>
                               <h5 className="fw-bold mb-0 text-end" style={{ minWidth: "80px" }}>
                                 ${(
-                                  parseFloat(vehicleDetails.totalPrice.replace("$", "")) * 1.12 + depositSubtotal
+                                  parseFloat(vehicleDetails.totalPrice.replace("$", "")) * 1.12
                                 ).toFixed(2)}
                               </h5>
                             </div>
@@ -485,7 +486,7 @@ const Reserve = ({ hideContent }) => {
                             minWidth: "200px",
                           }}
                         >
-                          <CheckCircle size={18} className="me-2" /> Request Booking
+                          <CheckCircle size={18} className="me-2" /> Request Reservation
                         </button>
                       </div>
                     </>
