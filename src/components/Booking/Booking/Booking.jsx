@@ -129,9 +129,9 @@ const Booking = () => {
 
                     <div className="card-body d-flex flex-column">
                       <div className="text-center">
-                        {booking.reservationDetails.vehicleDetails?.image && (
+                        {booking?.reservationDetails?.vehicleDetails?.image && (
                           <img
-                            src={booking.reservationDetails.vehicleDetails.image}
+                            src={booking?.reservationDetails?.vehicleDetails?.image}
                             className="img-fluid rounded shadow-sm"
                             style={{
                               background: "#fff",
@@ -147,20 +147,20 @@ const Booking = () => {
                       <div className="mt-3">
                         <p className="card-text">
                           <strong>🚘 Cart Name:</strong>{" "}
-                          {booking.reservationDetails.vehicleDetails?.vname || "N/A"}
+                          {booking?.reservationDetails?.vehicleDetails?.vname || "N/A"}
                         </p>
                         <p className="card-text">
                           <strong>📍 Pickup:</strong>{" "}
-                          {booking.reservationDetails.pickup || "N/A"}
+                          {booking?.reservationDetails?.pickup || "N/A"}
                         </p>
                         <p className="card-text">
                           <strong>📍 Drop-off:</strong>{" "}
-                          {booking.reservationDetails.drop || "N/A"}
+                          {booking?.reservationDetails?.drop || "N/A"}
                         </p>
                         <p className="card-text">
                           <strong>📅 Booking Date:</strong>{" "}
-                          {new Date(booking.reservationDetails.pickdate).toLocaleDateString()} -{" "}
-                          {new Date(booking.reservationDetails.dropdate).toLocaleDateString()}
+                          {new Date(booking?.reservationDetails?.pickdate).toLocaleDateString()} -{" "}
+                          {new Date(booking?.reservationDetails?.dropdate).toLocaleDateString()}
                         </p>
                         <p className="card-text">
                           <strong>💰 Reservation Amount Paid: </strong>${100}
@@ -233,15 +233,15 @@ const Booking = () => {
                   <div className="card shadow-lg border-0 bg-light rounded-lg overflow-hidden h-100">
                     <div className="card-header bg-dark text-center p-2">
                       <h6 className="text-white mb-0">
-                        {booking.bookingDetails?.bname || "N/A"}
+                        {booking?.bookingDetails?.bname || "N/A"}
                       </h6>
                     </div>
 
                     <div className="card-body d-flex flex-column">
                       <div className="text-center">
-                        {booking.reservationDetails.vehicleDetails?.image && (
+                        {booking?.reservationDetails?.vehicleDetails?.image && (
                           <img
-                            src={booking.reservationDetails.vehicleDetails.image}
+                            src={booking?.reservationDetails?.vehicleDetails.image}
                             className="img-fluid rounded shadow-sm"
                             style={{
                               background: "#fff",
@@ -257,20 +257,20 @@ const Booking = () => {
                       <div className="mt-3">
                         <p className="card-text">
                           <strong>🚘 Cart Name:</strong>{" "}
-                          {booking.reservationDetails.vehicleDetails?.vname || "N/A"}
+                          {booking?.reservationDetails?.vehicleDetails?.vname || "N/A"}
                         </p>
                         <p className="card-text">
                           <strong>📍 Pickup:</strong>{" "}
-                          {booking.reservationDetails.pickup || "N/A"}
+                          {booking?.reservationDetails?.pickup || "N/A"}
                         </p>
                         <p className="card-text">
                           <strong>📍 Drop-off:</strong>{" "}
-                          {booking.reservationDetails.drop || "N/A"}
+                          {booking?.reservationDetails?.drop || "N/A"}
                         </p>
                         <p className="card-text">
                           <strong>📅 Booking Date:</strong>{" "}
-                          {new Date(booking.reservationDetails.pickdate).toLocaleDateString()} -{" "}
-                          {new Date(booking.reservationDetails.dropdate).toLocaleDateString()}
+                          {new Date(booking?.reservationDetails?.pickdate).toLocaleDateString()} -{" "}
+                          {new Date(booking?.reservationDetails?.dropdate).toLocaleDateString()}
                         </p>
                         <p className="card-text">
                           <strong>💰 Total Booking Amount Paid: </strong>${booking.amount || "N/A"}
