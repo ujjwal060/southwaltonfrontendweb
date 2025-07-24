@@ -478,7 +478,7 @@ const Reserve = ({ hideContent }) => {
                             htmlFor="termsCheckbox"
                           >
                             <ShieldAlert size={16} className="me-1 text-danger" />
-                            I agree that $100 is non-refundable and wish to proceed.
+                            I agree to pay Vehicle Rental Amount and wish to proceed.
                           </label>
                         </div>
 
