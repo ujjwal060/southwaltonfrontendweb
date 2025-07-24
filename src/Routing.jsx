@@ -56,6 +56,8 @@ import Blog from "./components/Blog/blog";
 import { useEffect } from "react";
 
 import ScrollToTop from "./components/scroll/ScrollToTop"; // Import here
+import ReservePage from "./components/ReservePage/ReservePage";
+import ReservePage2 from "./components/ReservePage/ReservePage2";
 
 // import StripePayment from "./components/Payment/StripePayment";
 
@@ -174,6 +176,14 @@ function Routing() {
             <Route
               path="/terms-and-condition"
               element={<TermsandCondition />}
+            />
+            <Route
+              path="/reservepage"
+              element={<ReservePage />}
+            />
+            <Route
+              path="/reservepage2"
+              element={<ReservePage2 />}
             />
 
             {/* <Route path="/StripePayment" element={<StripePayment />} /> */}

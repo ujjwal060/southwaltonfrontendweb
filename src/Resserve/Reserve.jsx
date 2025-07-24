@@ -44,6 +44,11 @@ const Reserve = ({ hideContent }) => {
   const depositSubtotal = deposit + depositTax;
 
   useEffect(() => {
+    const deposit = 100;
+    localStorage.setItem("RservationDepositAmount", deposit.toFixed(2));
+  }, [showTax]);
+
+  useEffect(() => {
     const storedReservationId = localStorage.getItem("reservationId"); // Retrieve the value
     if (storedReservationId) {
       setReservationId(storedReservationId); // Update state with the retrieved value
@@ -168,7 +173,7 @@ const Reserve = ({ hideContent }) => {
       alert("Vehicle ID or Reservation ID is missing.");
       return;
     }
-
+    const depositAmount = localStorage.getItem("RservationDepositAmount");
     try {
       const response = await fetch(
         `http://98.85.246.54:5001/api/reserve/reservation/${reservationId}`,
@@ -182,6 +187,7 @@ const Reserve = ({ hideContent }) => {
             reserveAmount: calcPrice,
             vehicleAmount: baseRental,
             reservationId,
+            depositAmount: (depositAmount),
           }),
         }
       );
@@ -372,7 +378,7 @@ const Reserve = ({ hideContent }) => {
                       <div className="d-flex flex-column gap-3">
                         {/* Vehicle Rental Breakdown */}
                         <div className="row">
-                          <div className="col-md-6">
+                          <div className="col-md-12">
                             <div className="p-3 bg-light rounded h-100">
                               <h5 className="fw-bold mb-3 text-end">Vehicle Rental</h5>
                               <div className="d-flex flex-column">
@@ -404,7 +410,7 @@ const Reserve = ({ hideContent }) => {
                               </div>
                             </div>
                           </div>
-                          <div className="col-md-6">
+                          {/* <div className="col-md-6">
                             <div className="p-3 bg-light rounded h-100">
                               <h5 className="fw-bold mb-3 text-end">Reservation Deposit</h5>
                               <div className="d-flex flex-column">
@@ -415,27 +421,26 @@ const Reserve = ({ hideContent }) => {
                                   </span>
                                 </div>
 
-                                {/* {showTax && (
+                                {showTax && (
                                   <div className="d-flex justify-content-end mb-3">
                                     <span className="fw-bold">Florida Tax (7%):</span>
                                     <span className="text-end fw-bold" style={{ minWidth: "80px" }}>
                                       ${depositTax.toFixed(2)}
                                     </span>
                                   </div>
-                                )} */}
+                                )}
 
                                 <div className="d-flex justify-content-end border-top pt-2">
                                   <span className="fw-bold">Subtotal:</span>
                                   <span className="fw-bold text-success text-end" style={{ minWidth: "80px" }}>
-                                    {/* ${depositSubtotal.toFixed(2)} */}
+                                    ${depositSubtotal.toFixed(2)}
                                     ${deposit.toFixed(2)}
                                   </span>
                                 </div>
                               </div>
                               <small className="text-muted d-block text-end mt-1">(Non-Refundable)</small>
                             </div>
-                          </div>
-
+                          </div> */}
                         </div>
 
 
@@ -486,7 +491,7 @@ const Reserve = ({ hideContent }) => {
                             minWidth: "200px",
                           }}
                         >
-                          <CheckCircle size={18} className="me-2" /> Request Reservation
+                          <CheckCircle size={18} className="me-2" /> Request Booking
                         </button>
                       </div>
                     </>

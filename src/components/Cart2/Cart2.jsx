@@ -85,9 +85,8 @@ const Cart2 = () => {
                     Tag Number: <span className="fw-bold">{tagNumber}</span>
                   </p>
                   <p
-                    className={`availability mb-3 ${
-                      isAvailable ? "text-success" : "text-danger"
-                    }`}
+                    className={`availability mb-3 ${isAvailable ? "text-success" : "text-danger"
+                      }`}
                   >
                     <span className="fw-bold">
                       {isAvailable ? "Available" : "Unavailable"}
@@ -173,7 +172,7 @@ const Cart2 = () => {
             const days =
               Math.ceil(
                 (dropoffDate.getTime() - pickupDate.getTime()) /
-                  (1000 * 3600 * 24)
+                (1000 * 3600 * 24)
               ) + 1;
 
             const fetchedData = await fetchVehicledata(
@@ -228,6 +227,14 @@ const Cart2 = () => {
   const handlePopupClose = () => {
     setPopupVisible(false);
   };
+  const handleReserve = () => {
+    const vehicleId = localStorage.getItem("vehicleId");
+    if (vehicleId) {
+      navigate(`/reservepage?vehicleId=${vehicleId}`, { state: { vehicleId } });
+    } else {
+      alert("Vehicle ID missing");
+    }
+  };
 
   const handleBookClick = () => {
     const reserveId = localStorage.getItem("reservationId");
@@ -256,7 +263,7 @@ const Cart2 = () => {
     <div className="Container">
       {error && <p className="error-message">{error}</p>}
       {isPopupVisible && (
-        <Popup onClose={handlePopupClose} onBook={handleBookClick} />
+        <Popup onClose={handlePopupClose} onReserve={handleReserve} onBook={handleBookClick} />
       )}
 
       <div className="container">
