@@ -183,7 +183,7 @@ const ReservePage = ({ hideContent }) => {
         // Prepare payment payload with exact field names and types
         const paymentPayload = {
             userId: userId, 
-            bookingId: "68517d004a24723b3b590286", 
+            bookingId: "688231e6f5de15cb8cad003c", 
             reservation: true, 
             amountInDollars: depositAmount,
             fromAdmin: false,
